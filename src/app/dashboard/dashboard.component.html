@@ -1,0 +1,402 @@
+<!-- Pre-loader start -->
+<div class="theme-loader">
+    <div class="ball-scale">
+        <div class='contain'>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pre-loader end -->
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+
+        <nav class="navbar header-navbar pcoded-header">
+            <div class="navbar-wrapper">
+
+                <!-- Logo Start -->
+                <div class="navbar-logo">
+                    <a class="mobile-menu cursor-pointer" id="mobile-collapse">
+                        <i class="feather icon-menu"></i>
+                    </a>
+                    <a href="index.htm">
+                        <!-- <img class="img-fluid" src="assets\images\logoRec.png" alt="Logo Mirror"> -->
+                        <h5 class=" text-overline">Wall Mirror</h5>
+                    </a>
+                    <a class="mobile-options">
+                        <i class="feather icon-more-horizontal"></i>
+                    </a>
+                </div>
+                 <!-- Logo End -->
+
+
+                <div class="navbar-container container-fluid">
+
+                    <!-- Iconos Start -->
+                    <ul class="nav-left">
+                        <li class="header-search">
+                            <div class="main-search morphsearch-search">
+                                <div class="input-group">
+                                    <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="cursor-pointer" onclick="javascript:toggleFullScreen()">
+                                <i class="feather icon-maximize full-screen"></i>
+                            </a>
+                        </li>
+                    </ul>
+                     <!-- Iconos End -->
+
+                    <ul class="nav-right">
+                        <!-- Notificaciones Start -->
+                        <li class="header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="feather icon-bell"></i>
+                                <!-- Etiqueta Externa conteo notificaciones -->
+                                    <span class="badge bg-c-pink">1</span>
+                                </div>
+                                <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li>
+                                        <h6>Notificaciones</h6>
+                                    <!-- Etiqueta interna nuevas notificaciones -->
+                                        <!-- <label class="label label-danger">New</label> -->
+                                    </li>
+
+                                    <!-- Lista de Notificaciones Start -->
+                                    <li>
+                                        <div class="media">
+                                            <i class="feather icon-bell"></i>
+                                            <div class="media-body">
+                                                <h5 class="notification-user">Raspberry - Unicentro</h5>
+                                                <p class="notification-msg">Falla en Comunicacion TV</p>
+                                                <span class="notification-time">Hace 30 Minutos</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Lista de Notificaciones End -->      
+
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Notificaciones End -->
+
+                         <!-- Perfil Menu Start-->
+                        <li class="user-profile header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="assets\images\auth\Logo-small-bottom.png" class="img-radius" alt="User-Profile-Image">
+                                    <span>{{ username }}</span>
+                                    <i class="feather icon-chevron-down"></i>
+                                </div>
+                                <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li>
+                                        <a href="#!">
+                                            <i class="feather icon-settings"></i> Ajustes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather icon-user"></i> Perfil
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather icon-lock"></i> Bloqueo Pantalla
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a (click)="logout()">
+                                            <i class="feather icon-log-out"></i> Salir
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+                        <!-- Perfil Menu End -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+
+
+                <nav class="pcoded-navbar">
+                    <div class="pcoded-inner-navbar main-menu">
+                        <div class="pcoded-navigatio-lavel">Navegación</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="">
+                                <a href="index.htm">
+                                    <span class="pcoded-micon"><i class="feather icon-home "></i></span>
+                                    <span class="pcoded-mtext">Dashboard</span><span class="pcoded-badge label label-warning ">Nuevo</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="pcoded-navigatio-lavel">Dispositivos</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="">
+                                <a href="index.htm">
+                                    <span class="pcoded-micon"><i class="fa fa-usb"></i></span>
+                                    <span class="pcoded-mtext">Sensores</span><span class="pcoded-badge label label-info ">Nuevo</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="">
+                                <a href="index.htm">
+                                    <span class="pcoded-micon"><i class="icofont icofont-circuit"></i></span>
+                                    <span class="pcoded-mtext">Equipos</span><span class="pcoded-badge label label-info ">Nuevo</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="pcoded-navigatio-lavel">Reportes</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="">
+                                <a href="index.htm">
+                                    <span class="pcoded-micon"><i class="zmdi zmdi-assignment-check"></i></span>
+                                    <span class="pcoded-mtext">Informes</span><span class="pcoded-badge label label-info ">Nuevo</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
+
+
+
+                <div class="pcoded-content">
+                    <div class="pcoded-inner-content">
+                        <div class="main-body">
+                            
+                            <div class="page-wrapper">
+
+                                <div class="page-body">
+                                    
+                                    <div class="row">
+                                        
+                                        <!-- task, page, download counter  start -->
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-c-blank update-card">
+                                                <div class="card-block">
+                                                    <div class="row align-items-end">
+                                                        <div class="col-8">
+                                                            <h4 class="text-white"><i class="ti-eye"></i> {{username}}</h4>
+                                                            <h6 class="text-white m-b-0">Acceso - {{rolName}}</h6>
+                                                            
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <canvas id="update-chart-4" height="50"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Ultimo Inicio de Sesión : {{ last_login | date:'dd/MM/yyyy - HH:MM' }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-c-green update-card">
+                                                <div class="card-block">
+                                                    <div class="row align-items-end">
+                                                        <div class="col-8">
+                                                            <h4 class="text-white"><i class="feather icon-arrow-up st-icon "></i>{{staticTrue.total}}</h4>
+                                                            <h6 class="text-white m-b-0">Sensores - En Ejecución</h6>
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <canvas id="update-chart-2" height="50"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado : 2:15 am</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <div class="card bg-c-pink update-card">
+                                                <div class="card-block">
+                                                    <div class="row align-items-end">
+                                                        <div class="col-8">
+                                                            <h4 class="text-white"><i class="feather icon-arrow-down st-icon "></i>{{staticFalse.total}}</h4>
+                                                            <h6 class="text-white m-b-0">Sensores - En Caídos</h6>
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <canvas id="update-chart-3" height="50"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado : 2:15 am</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- sensores Advertencia -->
+                                        <div class="col-xl-3 col-md-6">
+                                            
+                                            <div class="card bg-c-yellow update-card">
+                                                <div class="card-block">
+                                                    <div class="row align-items-end">
+                                                        <div class="col-8">
+                                                            <h4 class="text-white"><i class="feather icon-alert-triangle st-icon bg-c-yellow"></i>{{staticWarning.total}}</h4>
+                                                            <h6 class="text-white m-b-0">Sesores - Advertencia</h6>
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <canvas id="update-chart-1" height="50"></canvas>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <p class="text-white m-b-0"><i class="feather icon-clock text-white f-14 m-r-10"></i>Actualizado : 2:15 am</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-9 col-md-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    
+                                                    <h4>Todos los Espejos</h4>
+                                                    <span>Control de espejos por Sitio y estado</span>
+    
+                                                </div>
+                                                <div class="card-block table-border-style">
+                                                    <div class="table-responsive">
+                                                        <table class="table nestable-inverse ">
+                                                            <thead class="table-primary">
+                                                                <tr>
+                                                                    <th scope="col" class=" text-center">ID Raspberry</th>
+                                                                    <th scope="col" class=" text-center">Nombre</th>
+                                                                    <th scope="col" class=" text-center">Sitio</th>
+                                                                    <th scope="col" class=" text-center">Acomodación</th>
+                                                                    <th scope="col" class=" text-center">Estado</th>
+                                                                    <th scope="col" class=" text-center">Ver Mas</th>
+                                                                  </tr>
+                                                            </thead>
+                                                            <tbody  class=" table-hover" >
+                                                                <tr *ngFor = "let data of getInfoRasp">
+                                                                  <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                  <td class=" text-center">{{data.nombre}}</td>
+                                                                  <td class=" text-center">{{data.sitio}}</td>
+                                                                  <td class=" text-center">{{data.acomodacion}}</td>
+                                                                  <td class=" text-center"> <i [ngClass]=" data.estado  ? 'fa fa-check-square text-c-green' :  'fa fa-exclamation-triangle'"></i></td>
+                                                                  <td class=" text-center cursor-pointer"><i class="fa fa-bullseye"></i></td>
+                                                                </tr>
+                                                              </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
+
+                                        </div>
+
+                                        <!-- <div>
+                                            <div>
+                                              <div>
+                                                <div style="display: block">
+                                                  <canvas baseChart [data]="barChartData" [options]="barChartOptions"
+                                                    [type]="barChartType" (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div> -->
+
+                                        
+                                        <!--  Riesgos start -->
+                                        <div class="col-xl-3 col-md-12">
+                                            <!-- <div class="card user-card2">
+                                                <div class="card-block text-center">
+                                                    <h6 class="m-b-15">Riesgo del proyecto</h6>
+                                                    <div class="risk-rate">
+                                                        <span><b>1</b></span>
+                                                    </div>
+                                                    <h6 class="m-b-10 m-t-10">Balance</h6>
+                                                    <a href="#!" class="text-c-yellow b-b-warning">Revisar Riesgos</a>
+                                                    <div class="row justify-content-center m-t-10 b-t-default m-l-0 m-r-0">
+                                                        <div class="col m-t-15 b-r-default">
+                                                            <h6 class="text-muted">Informe</h6>
+                                                            <h6>Alertas</h6>
+                                                        </div>
+                                                        <div class="col m-t-15">
+                                                            <h6 class="text-muted">Actualizado</h6>
+                                                            <h6>30th Sep</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-warning btn-block p-t-15 p-b-15">Descargar reporte</button>
+                                            </div> -->
+
+                                            <div class="card user-card2">
+                                                <div class="card-block text-center">
+                                                        <i class="feather icon-eye text-c-lite-green d-block f-40"></i>
+                                                        <h4 class="m-t-15"><span class="text-c-lite-green">{{impactosMes}}</span> Impactos</h4>
+                                                        <p class="m-b-10">El total de Impactos - Mes Actual</p>
+                                                    </div>
+                                            </div>
+
+                                            <div class="card user-card2">
+                                                <div class="card-block text-center">
+                                                    <i class="feather icon-map text-c-green d-block f-40"></i>
+                                                    <h4 class="m-t-15"><span class="text-c-blue">{{idName}}</span> {{impactosSites}} Impactos</h4>
+                                                    <p class="m-b-10">Ubicación mas polular - Mes Actua</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!--  Riesgos end -->
+                                        
+                                      
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
