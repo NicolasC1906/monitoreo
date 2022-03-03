@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType, ChartDataset } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 
@@ -46,7 +46,8 @@ export class DashboardComponent implements OnInit {
   idSite: any;
   impactosSites: any;
   idName: any;
-
+historico: any = [];
+label:any;
 
   
   constructor(
@@ -68,6 +69,7 @@ export class DashboardComponent implements OnInit {
     this.getStacts()
     this.getImpactosMes()
     this.getImpactosSite()
+    this.getHistorico()
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -237,7 +239,6 @@ export class DashboardComponent implements OnInit {
             }
 
           }else if(resp[i].sensores === "NULL"){
-            console.log("No entra")
           }
           
 
@@ -248,7 +249,28 @@ export class DashboardComponent implements OnInit {
 
 
     }
+    getHistorico(){ 
+      this.ApiService
+      .getHistorico() 
+      .subscribe((resp : any) =>{
+        let i;
+        for(i in resp){
+          this.historico.push({
+            data: [resp[i].impactos],
+            label:new Date(resp[i].ult_actualizacion).toLocaleString()
+          })  
+          // console.log(this.historico)
+            
+          
 
+
+        }
+
+      }
+     );
+
+
+    }
 
     getImpactosMes(){
     // console.log(id)
@@ -277,7 +299,7 @@ export class DashboardComponent implements OnInit {
     this.subscriptions.push(
         this.ApiService.getImpactosSite(this.idSite)
         .subscribe((r: any) => {
-            console.log(r);
+            // console.log(r);
            this.impactosSites =  r[0].impactos;
           // this.apellido = r.apellido registered
 
@@ -289,7 +311,7 @@ export class DashboardComponent implements OnInit {
            if(this.idSite === "1"){
 
             this.idName = "Unicentro"
-            console.log("entra")
+           
 
            }else if(this.idSite === "2"){
             
@@ -320,19 +342,23 @@ export class DashboardComponent implements OnInit {
         },
         plugins: {
           legend: { display: true },
-        }
+        },
+
+      
+
+        
       };
-      public barChartLabels: string[] = [ 'Unicentro', 'Santa fe' ];
+      public barChartLabels: string[] = [ 'impactos'];
       public barChartType: ChartType = 'bar';
     
       public barChartData: ChartData<'bar'> = {
         labels: this.barChartLabels,
-        datasets: [
-          { data: [ 65, 40 ], label: 'Caidos' },
-          { data: [ 65, 12 ], label: 'Ejecucion' },
-          { data: [ 28, 48], label: 'Warning' }
-        ]
+        datasets: this.historico
+        
       };
+
+      // Define colors of chart segments
+      
     
       // events
       public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
@@ -342,6 +368,38 @@ export class DashboardComponent implements OnInit {
       public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
         // console.log(event, active);
       }
+      public randomize(): void {
+        this.barChartType = this.barChartType === 'bar' ? 'polarArea' : 'bar';
+      }
     
+
+
+
+        //Linea de tiempo Grafica
+      chartOptions = {
+        responsive: true,
+        // backgroundColor: 'rgba(255,0,0,0.3)',
+        // borderColor: 'red',
+        // pointBackgroundColor: 'rgba(148,159,177,1)',
+        // pointBorderColor: '#fff',
+        // pointHoverBackgroundColor: '#fff',
+        // pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+      };
+
+      public lineChartType: ChartType = 'line';
+
+      chartData = [
+        { data: [330, 600, 260, 700], label: 'Account A' },
+        { data: [120, 455, 100, 340], label: 'Account B' },
+        { data: [45, 67, 800, 500], label: 'Account C' },
+        
+      ];
     
+      chartLabels = ['January', 'February', 'Mars', 'April'];
+    
+      onChartClick(event: any) {
+        console.log(event);
+      }
+
+      
 }

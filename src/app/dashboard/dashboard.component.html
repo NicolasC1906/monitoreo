@@ -293,6 +293,7 @@
                                         </div>
                                         <div class="col-xl-9 col-md-12">
                                             <div class="card">
+                                                
                                                 <div class="card-header">
                                                     
                                                     <h4>Todos los Espejos</h4>
@@ -331,17 +332,7 @@
 
                                         </div>
 
-                                        <!-- <div>
-                                            <div>
-                                              <div>
-                                                <div style="display: block">
-                                                  <canvas baseChart [data]="barChartData" [options]="barChartOptions"
-                                                    [type]="barChartType" (chartHover)="chartHovered($event)"
-                                                    (chartClick)="chartClicked($event)"></canvas>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div> -->
+                                        
 
                                         
                                         <!--  Riesgos start -->
@@ -367,6 +358,10 @@
                                                 </div>
                                                 <button class="btn btn-warning btn-block p-t-15 p-b-15">Descargar reporte</button>
                                             </div> -->
+                                            
+
+
+                                            
 
                                             <div class="card user-card2">
                                                 <div class="card-block text-center">
@@ -387,10 +382,79 @@
 
                                         </div>
                                         <!--  Riesgos end -->
-                                        
-                                      
 
                                     </div>
+                            <!-- visitor start -->
+                            <div class="col-xl-8 col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Impactos</h5>
+                                        <span class="text-muted">Impactos por clientes</span>
+                                        <div class="card-header-right">
+                                            <ul class="list-unstyled card-option">
+                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-block">
+                                        <div>
+                                            <div>
+                                              <div>
+                                                <div style="display: block">
+                                                  <canvas 
+                                                  baseChart 
+                                                  [data]="barChartData" 
+                                                  [options]="barChartOptions"
+                                                    [type]="barChartType" 
+                                                    (chartHover)="chartHovered($event)"
+                                                    (chartClick)="chartClicked($event)"></canvas>
+                                                </div>
+                                                <button mat-button mat-raised-button class="btn  btn-grd-warning btn-sm btn-round" (click)="randomize()">Cambio de grafico</button>
+                                              </div>
+                                            </div>
+                                          </div> 
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-xl-8 col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Impactos</h5>
+                                        <span class="text-muted">Impactos por clientes</span>
+                                        <div class="card-header-right">
+                                            <ul class="list-unstyled card-option">
+                                                <li><i class="feather icon-maximize full-card"></i></li>
+                                                <li><i class="feather icon-minus minimize-card"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="card-block">
+                                        <div>
+                                            <div>
+                                              <div>
+                                                <div style="display: block">
+                                                    <canvas
+                                                    baseChart
+                                                    [type]="lineChartType"
+                                                    [datasets]="chartData"
+                                                    [labels]="chartLabels"
+                                                    [options]="chartOptions"
+                                                    [legend]="true"
+                                                    (chartClick)="onChartClick($event)">
+                                                </canvas>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            
+
                                 </div>
                             </div>
                         </div>

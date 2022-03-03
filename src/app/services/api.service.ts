@@ -115,6 +115,13 @@ export class ApiService {
     return this.http.get(`${this.url}estadistica`);
   }
 
+  //estadistica
+  
+  getHistorico(){
+
+    return this.http.get(`${this.url}estadisticas/impactos/dias`);
+  }
+
   getimage(){
     let header = new HttpHeaders()
     .set('Type-content', 'aplication/json')
