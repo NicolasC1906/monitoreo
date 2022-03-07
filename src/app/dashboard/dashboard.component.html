@@ -160,12 +160,12 @@
 
                 <nav class="pcoded-navbar">
                     <div class="pcoded-inner-navbar main-menu">
-                        <div class="pcoded-navigatio-lavel">Navegación</div>
+                        <div class="pcoded-navigatio-lavel">Hola, <abbr title="En linea"><i class="fa fa-circle-o online"></i></abbr> {{rolName}}</div>
                         <ul class="pcoded-item pcoded-left-item">
                             <li class="">
-                                <a href="index.htm">
+                                <a href="dashboard">
                                     <span class="pcoded-micon"><i class="feather icon-home "></i></span>
-                                    <span class="pcoded-mtext">Dashboard</span><span class="pcoded-badge label label-warning ">Nuevo</span>
+                                    <span class="pcoded-mtext">Página principal</span><span class="pcoded-badge label label-warning ">Admin</span>
                                 </a>
                             </li>
                         </ul>
@@ -291,6 +291,137 @@
                                                 </div>
                                             </div>
                                         </div>
+                                       
+                                        <div class="col-sm-12">
+                                            <div class="card welcome-banner ">
+                                                <div class="card-header">
+                                                    <h5 class=" text-white text-light">Todos los sensores</h5>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card-block">
+                                                    <div >
+                                                        <canvas baseChart 
+                                                        [data]="barChartNOTData" 
+                                                        [options]="barChartNOTOptions"
+                                                        [type]="barChartNOYType"></canvas>
+                                                    </div>
+                                                    <button mat-button mat-raised-button class="btn  btn-grd-warning btn-sm btn-round" (click)="changeChart()">Cambio de grafico</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-xl-6 col-md-12">
+                                            <div class="card latest-update-card">
+                                                <div class="card-header">
+                                                    <h5>Ultimas Notificaciones</h5>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card-block">
+                                                    <div class="latest-update-box">
+                                                        <div class="row p-b-15">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">4 hrs ago</p>
+                                                                <i class="feather icon-arrow-down bg-simple-c-pink update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>+ 5 New Products were added!</h6>
+                                                                <p class="text-muted m-b-0">Congratulations!</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-b-15">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">1 day ago</p>
+                                                                <i class="feather icon-check bg-simple-c-yellow  update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>Database backup completed!</h6>
+                                                                <p class="text-muted m-b-0">Download the <span class="text-c-blue">latest backup</span>.</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-b-0">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">2 day ago</p>
+                                                                <i class="feather icon-facebook bg-simple-c-green update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>+1 Friend Requests</h6>
+                                                                <p class="text-muted m-b-10">This is great, keep it up!</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-b-15">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">4 hrs ago</p>
+                                                                <i class="feather icon-briefcase bg-simple-c-pink update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>+ 5 New Products were added!</h6>
+                                                                <p class="text-muted m-b-0">Congratulations!</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-b-15">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">4 hrs ago</p>
+                                                                <i class="feather icon-briefcase bg-simple-c-pink update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>+ 5 New Products were added!</h6>
+                                                                <p class="text-muted m-b-0">Congratulations!</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row p-b-15">
+                                                            <div class="col-auto text-right update-meta">
+                                                                <p class="text-muted m-b-0 d-inline">4 hrs ago</p>
+                                                                <i class="feather icon-briefcase bg-simple-c-pink update-icon"></i>
+                                                            </div>
+                                                            <div class="col">
+                                                                <h6>+ 5 New Products were added!</h6>
+                                                                <p class="text-muted m-b-0">Congratulations!</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>  
+                                        </div> 
+
+
+
+                                        <div class="col-xl-6 col-md-12">
+                                            <div class="card ">
+                                                <div class="card-header">
+                                                    <h5>Estadística de Últimas Notificaciones</h5>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card-block">
+                                                    <div style="display: block">
+                                                        <canvas
+                                                        baseChart
+                                                        [type]="lineChartNotType"
+                                                        [datasets]="chartNotData"
+                                                        [labels]="chartNotLabels"
+                                                        [options]="chartNotOptions"
+                                                        
+                                                        [legend]="true">
+                                                    </canvas>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
                                         <div class="col-xl-9 col-md-12">
                                             <div class="card">
                                                 

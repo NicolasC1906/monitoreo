@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType, ChartDataset } from 'chart.js';
+import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType, ChartDataset, Color } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 
@@ -48,6 +48,9 @@ export class DashboardComponent implements OnInit {
   idName: any;
 historico: any = [];
 label:any;
+  fechaAlarma: any;
+  raspberryFalse: any;
+  idEspejoFalse: any;
 
   
   constructor(
@@ -70,6 +73,7 @@ label:any;
     this.getImpactosMes()
     this.getImpactosSite()
     this.getHistorico()
+    this.getAlarmasStats()
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -324,6 +328,53 @@ label:any;
       }
 
 
+
+
+
+      getAlarmasStats(){ 
+        this.ApiService
+        .getStatsAlarma() 
+        .subscribe((resp : any) =>{
+          
+          let i;
+          for(i in resp){
+
+            if(resp[i].raspberry === "False"){
+              
+              console.log("Prueba Contar", Object.keys(resp[i].ult_actualizacion));
+              
+
+              this.fechaAlarma = resp[i].ult_actualizacion;
+              this.raspberryFalse = (resp[i].televisor).length
+              this.idEspejoFalse= resp[i].id_espejo;
+
+            }else if(resp[i].oferta === "True"){
+              
+              console.log("No entra")
+    
+            }
+            
+            // console.log(this.historico)
+          }
+  
+        }
+       );
+  
+  
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+      
   
 
       //Chart
@@ -335,13 +386,17 @@ label:any;
         },
         // We use these empty structures as placeholders for dynamic theming.
         scales: {
-          x: {},
+          x: {
+           
+          },
           y: {
-            min: 10
+           
+            
           }
         },
         plugins: {
           legend: { display: true },
+          
         },
 
       
@@ -360,6 +415,66 @@ label:any;
       // Define colors of chart segments
       
     
+
+      public barChartNOTOptions: ChartConfiguration['options'] = {
+        elements: {
+          line: {
+            tension: 0.4
+          },
+          
+        },
+        // We use these empty structures as placeholders for dynamic theming.
+        scales: {
+          x: { grid: {
+            color: '#fff',
+          },
+          ticks: {
+            color: 'white'
+          }
+        },
+          y: {
+            grid: {
+              color: '#fff',
+            },
+            ticks: {
+              color: 'white'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            labels: {
+              color: 'white'
+            }
+          }
+        },
+        
+      };
+      public barChartNOTLabels: string[] = ['00:00', '08:00', '13:00', '22:00'];
+      public barChartNOYType: ChartType = 'line';
+    
+      public barChartNOTData: ChartData<'bar'> = {
+        labels: this.barChartNOTLabels,
+        datasets: [
+          { data: [11, 10, 10, 15], label: 'Caidos' },
+          { data: [19, 15, 15, 15], label: 'Ejecución' },
+          { data: [10, 10, 15, 11], label: 'Advertencia' },
+        ]
+      };
+      public changeChart(): void {
+        this.barChartNOYType = this.barChartNOYType === 'line' ? 'bar' : 'line';
+      }
+
+
+
+
+
+
+
+
+
+
       // events
       public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
         // console.log(event, active);
@@ -393,7 +508,7 @@ label:any;
         { data: [120, 455, 100, 340], label: 'Account B' },
         { data: [45, 67, 800, 500], label: 'Account C' },
         
-      ];
+      ];  
     
       chartLabels = ['January', 'February', 'Mars', 'April'];
     
@@ -401,5 +516,14 @@ label:any;
         console.log(event);
       }
 
+
+    
+     
+      
+    
+     
+    
       
 }
+
+

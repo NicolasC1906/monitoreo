@@ -122,6 +122,13 @@ export class ApiService {
     return this.http.get(`${this.url}estadisticas/impactos/dias`);
   }
 
+  //estadistica/alarma
+  
+  getStatsAlarma(){
+
+    return this.http.get(`${this.url}estadistica/alarma`);
+  }
+
   getimage(){
     let header = new HttpHeaders()
     .set('Type-content', 'aplication/json')
