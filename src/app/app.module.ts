@@ -18,33 +18,55 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {NgxPaginationModule} from 'ngx-pagination';
 import { InterceptorService } from './services/interceptor.service';
+import { MenuComponent } from './menu/menu.component';
+import { SettingsComponent } from './settings/settings.component';
+
+
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatTreeModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    AppRoutingModule,
-    NgChartsModule,
-    NgxSpinnerModule,
-    NgxPaginationModule
-    
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
-  ],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      LoginComponent,
+      DashboardComponent,
+      MenuComponent,
+      SettingsComponent
+   ],
+   imports: [
+	 BrowserModule,
+	 AppRoutingModule,
+	 BrowserAnimationsModule,
+	 MatTreeModule,
+	 HttpClientModule,
+	 FormsModule,
+	 ReactiveFormsModule,
+	 RouterModule,
+	 AppRoutingModule,
+	 NgChartsModule,
+	 NgxSpinnerModule,
+	 NgxPaginationModule,
+    MatButtonModule, 
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatBottomSheetModule,
+    MatExpansionModule,
+    MatTabsModule
+	],
+   providers: [
+      {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+   ], 
+   // {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+
+   
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }

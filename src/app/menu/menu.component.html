@@ -1,0 +1,117 @@
+<div id="pcoded" class="pcoded">
+  <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+      <nav class="navbar header-navbar pcoded-header">
+        <div class="navbar-wrapper">
+
+            <!-- Logo Start -->
+            <div class="navbar-logo">
+                <a class="mobile-menu cursor-pointer" id="mobile-collapse">
+                    <i class="feather icon-menu"></i>
+                </a>
+                <a href="index.htm">
+                    <!-- <img class="img-fluid" src="assets\images\logoRec.png" alt="Logo Mirror"> -->
+                    <h5 class=" text-overline">Wall Mirror</h5>
+                </a>
+                <a class="mobile-options">
+                    <i class="feather icon-more-horizontal"></i>
+                </a>
+            </div>
+            <!-- Logo End -->
+
+
+            <div class="navbar-container container-fluid">
+
+                <!-- Iconos Start -->
+                <ul class="nav-left">
+                    <li class="header-search">
+                        <div class="main-search morphsearch-search">
+                            <div class="input-group">
+                                <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="cursor-pointer" onclick="javascript:toggleFullScreen()">
+                            <i class="feather icon-maximize full-screen"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Iconos End -->
+
+                <ul class="nav-right">
+                    <!-- Notificaciones Start -->
+                    <li class="header-notification">
+                        <div class="dropdown-primary dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="feather icon-bell"></i>
+                            <!-- Etiqueta Externa conteo notificaciones -->
+                                <span class="badge bg-c-pink">1</span>
+                            </div>
+                            <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                <li>
+                                    <h6>Notificaciones</h6>
+                                <!-- Etiqueta interna nuevas notificaciones -->
+                                    <!-- <label class="label label-danger">New</label> -->
+                                </li>
+
+                                <!-- Lista de Notificaciones Start -->
+                                <li>
+                                    <div class="media">
+                                        <i class="feather icon-bell"></i>
+                                        <div class="media-body">
+                                            <h5 class="notification-user">Raspberry - Unicentro</h5>
+                                            <p class="notification-msg">Falla en Comunicacion TV</p>
+                                            <span class="notification-time">Hace 30 Minutos</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Lista de Notificaciones End -->      
+
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- Notificaciones End -->
+
+                    <!-- Perfil Menu Start-->
+                    <li class="user-profile header-notification">
+                        <div class="dropdown-primary dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="assets\images\auth\Logo-small-bottom.png" class="img-radius" alt="User-Profile-Image">
+                                <span>{{ username }}</span>
+                                <i class="feather icon-chevron-down"></i>
+                            </div>
+                            <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                <li>
+                                    <a href="#!">
+                                        <i class="feather icon-settings"></i> Ajustes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="feather icon-user"></i> Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="feather icon-lock"></i> Bloqueo Pantalla
+                                    </a>
+                                </li>
+                                <li>
+                                    <a (click)="logout()">
+                                        <i class="feather icon-log-out"></i> Salir
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+                    <!-- Perfil Menu End -->
+                </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+</div>      

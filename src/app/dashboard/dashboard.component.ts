@@ -8,6 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { SpinnerService } from '../services/spinner.service'; 
 import {NgxPaginationModule} from 'ngx-pagination';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,7 +16,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 })
 export class DashboardComponent implements OnInit {
   
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  
 
   id:any;
   subscriptions:Subscription[]=[];
