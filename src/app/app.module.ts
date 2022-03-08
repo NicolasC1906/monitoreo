@@ -8,14 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule  } from '@angular/forms'; 
 import { NgChartsModule } from 'ng2-charts';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import {NgxPaginationModule} from 'ngx-pagination';
+import { InterceptorService } from './services/interceptor.service';
 
 
 
@@ -36,9 +38,13 @@ import { NgChartsModule } from 'ng2-charts';
     RouterModule,
     AppRoutingModule,
     NgChartsModule,
+    NgxSpinnerModule,
+    NgxPaginationModule
     
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,41 +1,4 @@
-<!-- Pre-loader start -->
-<div class="theme-loader">
-    <div class="ball-scale">
-        <div class='contain'>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-            <div class="ring">
-                <div class="frame"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Pre-loader end -->
+
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
     <div class="pcoded-container navbar-wrapper">
@@ -292,8 +255,8 @@
                                             </div>
                                         </div>
                                        
-                                        <div class="col-sm-12">
-                                            <div class="card welcome-banner ">
+                                        <div class="col-lg-12 ">
+                                            <div class="card  welcome-banner ">
                                                 <div class="card-header">
                                                     <h5 class=" text-white text-light">Todos los sensores</h5>
                                                     <div class="card-header-right">
@@ -303,8 +266,8 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <div class="card-block">
-                                                    <div >
+                                                <div class="card-block ">
+                                                    <div style="display: block">
                                                         <canvas baseChart 
                                                         [data]="barChartNOTData" 
                                                         [options]="barChartNOTOptions"
@@ -434,6 +397,7 @@
                                                 <div class="card-block table-border-style">
                                                     <div class="table-responsive">
                                                         <table class="table nestable-inverse ">
+                                                            
                                                             <thead class="table-primary">
                                                                 <tr>
                                                                     <th scope="col" class=" text-center">ID Raspberry</th>
@@ -445,7 +409,7 @@
                                                                   </tr>
                                                             </thead>
                                                             <tbody  class=" table-hover" >
-                                                                <tr *ngFor = "let data of getInfoRasp">
+                                                                <tr *ngFor = "let data of getInfoRasp | paginate: { itemsPerPage: 2, currentPage: cp  }">
                                                                   <th scope="row" class=" text-center">{{data.id}}</th>
                                                                   <td class=" text-center">{{data.nombre}}</td>
                                                                   <td class=" text-center">{{data.sitio}}</td>
@@ -455,6 +419,24 @@
                                                                 </tr>
                                                               </tbody>
                                                         </table>
+                                                        <!-- Paginación -->
+                                                        <div class=" pro-result pagination-style">
+                                                            <div class="clearfix">
+                                                            <pagination-controls  
+                                                            class="my-pagination pagination-style" 
+                                                            (pageChange)="onPageChange 
+                                                            ($event)" 
+                                                            
+                                                            previousLabel = " Anterior "
+                                                            nextLabel = " Siguiente " 
+                                                            >
+                                                            </pagination-controls>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Paginación -->
+
+                                                        
+
                                                     </div>
                                                 </div>
 
@@ -468,6 +450,7 @@
                                         
                                         <!--  Riesgos start -->
                                         <div class="col-xl-3 col-md-12">
+
                                             <!-- <div class="card user-card2">
                                                 <div class="card-block text-center">
                                                     <h6 class="m-b-15">Riesgo del proyecto</h6>
@@ -510,82 +493,37 @@
                                                 </div>
                                             </div>
 
+                                            <div class="card user-card2">
+                                                <div class="card-header  text-center">
+                                                    <i class="ti-target text-c-orenge d-block f-40"></i>
+                                                    <h4 class="m-t-15"><span class="text-c-lite-green">Estadistica</span> Impactos</h4>
+                                                    <div class="card-header-right">
+                                                        <ul class="list-unstyled card-option">
+                                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="card-block  text-center">
+                                                    <span class="text-muted">Impactos diarios por clientes</span>
+                                                    <ngx-spinner></ngx-spinner>
+                                                    <canvas 
+                                                    baseChart 
+                                                    [data]="barChartData" 
+                                                    [options]="barChartOptions"
+                                                      [type]="barChartType" 
+                                                      (chartHover)="chartHovered($event)"
+                                                      (chartClick)="chartClicked($event)"></canvas>
+                                                </div>
+                                                
+                                            </div>
+
 
                                         </div>
                                         <!--  Riesgos end -->
 
                                     </div>
                             <!-- visitor start -->
-                            <div class="col-xl-8 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Impactos</h5>
-                                        <span class="text-muted">Impactos por clientes</span>
-                                        <div class="card-header-right">
-                                            <ul class="list-unstyled card-option">
-                                                <li><i class="feather icon-maximize full-card"></i></li>
-                                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-block">
-                                        <div>
-                                            <div>
-                                              <div>
-                                                <div style="display: block">
-                                                  <canvas 
-                                                  baseChart 
-                                                  [data]="barChartData" 
-                                                  [options]="barChartOptions"
-                                                    [type]="barChartType" 
-                                                    (chartHover)="chartHovered($event)"
-                                                    (chartClick)="chartClicked($event)"></canvas>
-                                                </div>
-                                                <button mat-button mat-raised-button class="btn  btn-grd-warning btn-sm btn-round" (click)="randomize()">Cambio de grafico</button>
-                                              </div>
-                                            </div>
-                                          </div> 
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-xl-8 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Linea de tiempo</h5>
-                                        <span class="text-muted">Impactos por clientes</span>
-                                        <div class="card-header-right">
-                                            <ul class="list-unstyled card-option">
-                                                <li><i class="feather icon-maximize full-card"></i></li>
-                                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-block">
-                                        <div>
-                                            <div>
-                                              <div>
-                                                <div style="display: block">
-                                                    <canvas
-                                                    baseChart
-                                                    [type]="lineChartType"
-                                                    [datasets]="chartData"
-                                                    [labels]="chartLabels"
-                                                    [options]="chartOptions"
-                                                    [legend]="true"
-                                                    (chartClick)="onChartClick($event)">
-                                                </canvas>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div> 
-                                    </div>
-                                </div>
-                            </div>
-                            
-
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,9 @@ import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ChartConfiguration, ChartData, ChartEvent, ChartOptions, ChartType, ChartDataset, Color } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { SpinnerService } from '../services/spinner.service'; 
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,11 +53,15 @@ label:any;
   fechaAlarma: any;
   raspberryFalse: any;
   idEspejoFalse: any;
+  cp: number = 1;
+  
 
   
   constructor(
 
-    private ApiService: ApiService
+    private ApiService: ApiService,
+    private SpinnerService: SpinnerService,
+    private spinner: NgxSpinnerService,
 
   ) { 
 
@@ -67,13 +73,14 @@ label:any;
 
   ngOnInit(): void {
 
-    this.getMirrorSiteInfo()
-    this.getMirrorInfo()
-    this.getStacts()
-    this.getImpactosMes()
-    this.getImpactosSite()
-    this.getHistorico()
-    this.getAlarmasStats()
+    this.getMirrorSiteInfo();
+    this.getMirrorInfo();
+    this.getStacts();
+    this.getImpactosMes();
+    this.getImpactosSite();
+    this.getHistorico();
+    this.getAlarmasStats();
+    
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -87,6 +94,28 @@ label:any;
     }
 
     this.idUser = localStorage.getItem('id');
+  }
+
+  paginado(event: number):void{
+    this.spinner.show();
+    this.cp = event;
+
+    setTimeout(() => {
+      /** spinner ends after 1 seconds */
+      this.spinner.hide();
+    }, 1000);
+
+  }
+
+  onPageChange(event: number):void{
+    this.spinner.show();
+    this.cp = event;
+
+    setTimeout(() => {
+      /** spinner ends after 1 seconds */
+      this.spinner.hide();
+    }, 1000);
+
   }
 
   getInfo(){
@@ -263,7 +292,7 @@ label:any;
             data: [resp[i].impactos],
             label:new Date(resp[i].ult_actualizacion).toLocaleString()
           })  
-          // console.log(this.historico)
+           console.log("Esto es el historico",this.historico)
             
           
 
@@ -341,7 +370,7 @@ label:any;
 
             if(resp[i].raspberry === "False"){
               
-              console.log("Prueba Contar", Object.keys(resp[i].ult_actualizacion));
+          
               
 
               this.fechaAlarma = resp[i].ult_actualizacion;
@@ -364,18 +393,6 @@ label:any;
       }
 
 
-
-
-
-
-
-
-
-
-
-
-      
-  
 
       //Chart
       public barChartOptions: ChartConfiguration['options'] = {
@@ -408,9 +425,10 @@ label:any;
     
       public barChartData: ChartData<'bar'> = {
         labels: this.barChartLabels,
-        datasets: this.historico
+        datasets: this.historico,
         
       };
+
 
       // Define colors of chart segments
       
@@ -467,14 +485,6 @@ label:any;
       }
 
 
-
-
-
-
-
-
-
-
       // events
       public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
         // console.log(event, active);
@@ -487,35 +497,6 @@ label:any;
         this.barChartType = this.barChartType === 'bar' ? 'polarArea' : 'bar';
       }
     
-
-
-
-        //Linea de tiempo Grafica
-      chartOptions = {
-        responsive: true,
-        // backgroundColor: 'rgba(255,0,0,0.3)',
-        // borderColor: 'red',
-        // pointBackgroundColor: 'rgba(148,159,177,1)',
-        // pointBorderColor: '#fff',
-        // pointHoverBackgroundColor: '#fff',
-        // pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-      };
-
-      public lineChartType: ChartType = 'line';
-
-      chartData = [
-        { data: [330, 600, 260, 700], label: 'Account A' },
-        { data: [120, 455, 100, 340], label: 'Account B' },
-        { data: [45, 67, 800, 500], label: 'Account C' },
-        
-      ];  
-    
-      chartLabels = ['January', 'February', 'Mars', 'April'];
-    
-      onChartClick(event: any) {
-        console.log(event);
-      }
-
 
     
      
