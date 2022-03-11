@@ -28,6 +28,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 
@@ -57,7 +64,13 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatFormFieldModule,
     MatBottomSheetModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatTableModule,
+    MatPaginatorModule
 	],
    providers: [
       {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

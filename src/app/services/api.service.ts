@@ -86,6 +86,11 @@ export class ApiService {
     return this.http.get(`${this.url}sensores/all`);
   }
 
+  getCitys(){
+
+    return this.http.get(`${this.url}ciudades`);
+  }
+
 
   //Tabla espejos
   

@@ -184,16 +184,218 @@
                                         
                                         <div class="card-header">
                                             
-                                            <h4>Menu Tab</h4>
-                                            <span>Prueba de Angular <code>mat-tab-group</code></span>
+                                            <h4>Configuracion del Sitio</h4>
+                                            <span>Modulo de parametrizacion de jerarquias del sitio.</span>
     
                                         </div>
                                         <div class="card-block">
-                                          <mat-tab-group>
-                                            
-                                            <mat-tab  label="Ciudades"> <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div></mat-tab>
-                                            <mat-tab  label="Sitios"><div class="mat-Margin">Contenido de Sitios Acesso: {{getTimeLoaded(1) | date:'medium'}}</div></mat-tab>
-                                            <mat-tab label="Baños"><div class="mat-Margin">Contenido de Baños Acesso: {{getTimeLoaded(1) | date:'medium'}}</div></mat-tab>
+                                          <mat-tab-group mat-align-tabs="center">
+                                           
+                                            <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">location_city </mat-icon>
+                                                  Ciudades
+                                                </ng-template>
+                                                <div class="mat-Margin">
+
+                                                    <mat-accordion class="example-headers-align"  multi="false">
+                                                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>>
+                                                            <mat-expansion-panel-header>
+                                                                <mat-panel-title>
+                                                                    Ciudad
+                                                                   </mat-panel-title>
+                                                                   <mat-panel-description>
+                                                                    Escribir o elegir.
+                                                                  <mat-icon>location_city</mat-icon>
+                                                                </mat-panel-description>
+                                                            </mat-expansion-panel-header>
+                                                            <form class="example-form">
+                                                                <mat-form-field class="example-full-width" appearance="fill">
+                                                                  <mat-label>Ciudad</mat-label>
+                                                                  <input type="text"
+                                                                         placeholder="Elige o Escriba"
+                                                                         aria-label="Number"
+                                                                         matInput
+                                                                         [formControl]="myControl"
+                                                                         [matAutocomplete]="auto">
+                                                                  <mat-autocomplete #auto="matAutocomplete">
+                                                                    <mat-option *ngFor="let option of options" [value]="option">
+                                                                      {{option}}
+                                                                    </mat-option>
+                                                                  </mat-autocomplete>
+                                                                </mat-form-field>
+                                                              </form>
+    
+                                                              <mat-action-row>
+                                                                <button mat-button  class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
+                                                              </mat-action-row>
+                                                          </mat-expansion-panel>
+                                                      
+                                                        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                                                          <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                              Latitud
+                                                            </mat-panel-title>
+                                                            <mat-panel-description>
+                                                                Latitud de Ciudad
+                                                              <mat-icon> my_location</mat-icon>
+                                                            </mat-panel-description>
+                                                          </mat-expansion-panel-header>
+                                                      
+                                                          <form class="example-form">
+                                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                              <mat-label>Latitud</mat-label>
+                                                              <input matInput placeholder="Latitud Exacta">
+                                                            </mat-form-field>
+                                                          </form>
+                                                      
+                                                          <mat-action-row>
+                                                            <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
+                                                            <button mat-button class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
+                                                          </mat-action-row>
+                                                        </mat-expansion-panel>
+                                                      
+                                                        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                                                          <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                              Longitud
+                                                            </mat-panel-title>
+                                                            <mat-panel-description>
+                                                                Longitud de Ciudad
+                                                              <mat-icon>short_text</mat-icon>
+                                                            </mat-panel-description>
+                                                          </mat-expansion-panel-header>
+
+                                                          <form class="example-form">
+                                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                              <mat-label>Longitd</mat-label>
+                                                              <input matInput placeholder="Longitd Exacta">
+                                                            </mat-form-field>
+                                                          </form>
+
+                                                          <mat-action-row>
+                                                            <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
+                                                            <button mat-button class="btn btn-mat btn-primary text-white" (click)="openSnackBar('Registrado', 'Cancelar')">
+                                                                Finalizar
+                                                              </button>
+                                                          </mat-action-row>
+                                                        </mat-expansion-panel>
+                                                      
+                                                      </mat-accordion>
+                                                      
+                                                      
+
+                                                </div>
+
+
+                                                <div class="col-lg-12 mat-Margin">
+                                                    <div class="card">
+                                                        
+                                                        <div class="card-header">
+                                                            
+                                                            <h4>Ciudades Registradas</h4>
+                                                            <span>Listado de Ciudades Registradas</span>
+                
+                                                        </div>
+                                                        <div class="card-block table-border-style ">
+                                                          
+                                                            <div class="card-block table-border-style">
+                                                                <div class="table-responsive">
+                                                                    <table class="table nestable-inverse ">
+                                                                        
+                                                                        <thead class="table-primary">
+                                                                            <tr>
+                                                                                <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                <th scope="col" class=" text-center">Nombre</th>
+                                                                                <th scope="col" class=" text-center">Latitud</th>
+                                                                                <th scope="col" class=" text-center">Longitud</th>
+                                                                              </tr>
+                                                                        </thead>
+                                                                        <tbody  class=" table-hover" >
+                                                                            <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 5, currentPage: cp  }">
+                                                                              <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                              <td class=" text-center">{{data.nombre}}</td>
+                                                                              <td class=" text-center">{{data.latitud}}</td>
+                                                                              <td class=" text-center">{{data.longitud}}</td>
+                                                                            </tr>
+                                                                          </tbody>
+                                                                    </table>
+                                                                    <!-- Paginación -->
+                                                                    <div class=" pro-result pagination-style">
+                                                                        <div class="clearfix">
+                                                                        <pagination-controls  
+                                                                        class="my-pagination pagination-style" 
+                                                                        (pageChange)="onPageChange 
+                                                                        ($event)" 
+                                                                        
+                                                                        previousLabel = " Anterior "
+                                                                        nextLabel = " Siguiente " 
+                                                                        >
+                                                                        </pagination-controls>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Paginación -->
+            
+                                                                </div>
+                                                            </div>
+        
+        
+        
+                                                      </div>   
+                                                    </div>
+                                                  </div>  
+
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">local_mall </mat-icon>
+                                                  Categorias
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de Sitios Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">add_location </mat-icon>
+                                                  Sitios
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de Baños Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">camera_front </mat-icon>
+                                                  Baños
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de Baños Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">face </mat-icon>
+                                                  Generos
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">memory  </mat-icon>
+                                                  Raspberri Pi
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              <mat-tab>
+                                                <ng-template mat-tab-label>
+                                                  <mat-icon class="example-tab-icon">supervised_user_circle </mat-icon>
+                                                  Usuarios
+                                                </ng-template>
+                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                              </mat-tab>
+
+                                              
                                           </mat-tab-group>
                                         </div>
                                       </div>
@@ -201,71 +403,8 @@
 
                                   <!-- Contenido1 -->
 
-                                  <div class="col-xl-9 col-md-12">
-                                    <div class="card">
-                                        
-                                        <div class="card-header">
-                                            
-                                            <h4>Accordion</h4>
-                                            <span>Prueba de Angular <code>mat-expansion-panel</code></span>
-
-                                        </div>
-                                        <div class="card-block table-border-style">
-                                          <mat-accordion multi="false">
-                                            <mat-expansion-panel>
-                                              <mat-expansion-panel-header>
-                                               <mat-panel-title>
-                                                 Titulo Panel 1
-                                               </mat-panel-title>
-                                               <mat-panel-description>
-                                                 Descripción
-                                               </mat-panel-description>
-                                              </mat-expansion-panel-header>
-                                            <p>Esto es el contenido del panel.</p>
-                                              <mat-action-row>
-                                               <button class="btn btn-danger btn-grd-danger" mat-button (click)="openSnackBar('Item Eliminado', 'Cancelar')">
-                                                 SnackBar
-                                               </button>
-                                              </mat-action-row>
-                                            </mat-expansion-panel>
-                                            
-                                            <mat-expansion-panel>
-                                             <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                Titulo Panel 2
-                                              </mat-panel-title>
-                                              <mat-panel-description>
-                                                Descripción
-                                              </mat-panel-description>
-                                             </mat-expansion-panel-header>
-                                            <p>Esto es el contenido del panel.</p>
-                                             <mat-action-row>
-                                              <button class="btn btn-danger btn-grd-danger" mat-button (click)="openSnackBar('Item Eliminado', 'Cancelar')">
-                                                SnackBar
-                                              </button>
-                                             </mat-action-row>
-                                            </mat-expansion-panel>
-                                            
-                                            <mat-expansion-panel>
-                                             <mat-expansion-panel-header>
-                                              <mat-panel-title>
-                                                Titulo Pnale 3
-                                              </mat-panel-title>
-                                              <mat-panel-description>
-                                                Descripción
-                                              </mat-panel-description>
-                                             </mat-expansion-panel-header>
-                                            <p>Esto es el contenido del panel.</p>
-                                             <mat-action-row>
-                                              <button class="btn btn-danger btn-grd-danger" mat-button (click)="openSnackBar('Item Eliminado', 'Cancelar')">
-                                                SnackBar
-                                              </button>
-                                             </mat-action-row>
-                                            </mat-expansion-panel>
-                                          </mat-accordion>  
-                                      </div>   
-                                    </div>
-                                  </div>  
+                                  
+                                  
                                   
                                   
 

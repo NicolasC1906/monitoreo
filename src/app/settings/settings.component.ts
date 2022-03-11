@@ -8,6 +8,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { SpinnerService } from '../services/spinner.service'; 
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FormControl, Validators} from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-settings',
@@ -30,6 +32,11 @@ export class SettingsComponent implements OnInit {
   rolName: any;
   last_login: any;
 
+  step = 0;
+
+  cp: number = 1;
+  getCiudades: any = [];
+
 
   
 
@@ -40,6 +47,40 @@ export class SettingsComponent implements OnInit {
     private snackBar: MatSnackBar
   ) { }
   
+
+
+  onPageChange(event: number):void{
+    this.spinner.show();
+    this.cp = event;
+
+    setTimeout(() => {
+      /** spinner ends after 1 seconds */
+      this.spinner.hide();
+    }, 1000);
+
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
+  myControl = new FormControl();
+  options: string[] = ['Bogota', 'Bucaramanga', 'Medellin', 'Madrid'];
+  
+
+
+
+  
+
+
   openSnackBar(message: string, action: string){
    let snackBarRef = this.snackBar.open(message, action, {duration: 2000});
 
@@ -65,6 +106,8 @@ export class SettingsComponent implements OnInit {
   
 
   ngOnInit() {
+
+    this.getCity();
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -155,6 +198,32 @@ export class SettingsComponent implements OnInit {
           }
         });
         ;
+      }
+
+
+
+      getCity(){ 
+        this.ApiService
+        .getCitys() 
+        .subscribe((resp : any) =>{
+          let i;
+          //console.log(resp)
+          for(i in resp){
+            this.getCiudades.push({
+  
+              "id":resp[i].id_ciudad,
+              "nombre":resp[i].nombre,
+              "longitud":resp[i].lat,
+              "latitud":resp[i].lng,
+            })
+               console.log(this.getCiudades);
+  
+          }
+  
+        }
+       );
+  
+  
       }
 
 

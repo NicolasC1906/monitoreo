@@ -283,7 +283,7 @@ label:any;
 
 
     }
-    getHistorico(){ 
+    async     getHistorico(){ 
       this.ApiService
       .getHistorico() 
       .subscribe((resp : any) =>{
