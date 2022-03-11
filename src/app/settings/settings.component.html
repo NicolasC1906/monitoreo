@@ -199,37 +199,38 @@
                                                 <div class="mat-Margin">
 
                                                     <mat-accordion class="example-headers-align"  multi="false">
-                                                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>>
-                                                            <mat-expansion-panel-header>
-                                                                <mat-panel-title>
-                                                                    Ciudad
-                                                                   </mat-panel-title>
-                                                                   <mat-panel-description>
-                                                                    Escribir o elegir.
-                                                                  <mat-icon>location_city</mat-icon>
-                                                                </mat-panel-description>
-                                                            </mat-expansion-panel-header>
-                                                            <form class="example-form">
-                                                                <mat-form-field class="example-full-width" appearance="fill">
-                                                                  <mat-label>Ciudad</mat-label>
-                                                                  <input type="text"
-                                                                         placeholder="Elige o Escriba"
-                                                                         aria-label="Number"
-                                                                         matInput
-                                                                         [formControl]="myControl"
-                                                                         [matAutocomplete]="auto">
-                                                                  <mat-autocomplete #auto="matAutocomplete">
-                                                                    <mat-option *ngFor="let option of options" [value]="option">
-                                                                      {{option}}
-                                                                    </mat-option>
-                                                                  </mat-autocomplete>
-                                                                </mat-form-field>
-                                                              </form>
-    
-                                                              <mat-action-row>
-                                                                <button mat-button  class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
-                                                              </mat-action-row>
-                                                          </mat-expansion-panel>
+                                                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                                                          <mat-expansion-panel-header>
+                                                            <mat-panel-title>
+                                                             Ciudad
+                                                            </mat-panel-title>
+                                                            <mat-panel-description>
+                                                                Escribir o elegir.
+                                                              <mat-icon>location_city</mat-icon>
+                                                            </mat-panel-description>
+                                                          </mat-expansion-panel-header>
+                                                      
+                                                          <form class="example-form">
+                                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                              <mat-label>Ciudad</mat-label>
+                                                              <input type="text"
+                                                                     placeholder="Elige o Escriba"
+                                                                     aria-label="Number"
+                                                                     matInput
+                                                                     [formControl]="myControl"
+                                                                     [matAutocomplete]="auto">
+                                                              <mat-autocomplete #auto="matAutocomplete">
+                                                                <mat-option *ngFor="let option of options" [value]="option">
+                                                                  {{option}}
+                                                                </mat-option>
+                                                              </mat-autocomplete>
+                                                            </mat-form-field>
+                                                          </form>
+
+                                                          <mat-action-row>
+                                                            <button mat-button  class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
+                                                          </mat-action-row>
+                                                        </mat-expansion-panel>
                                                       
                                                         <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
                                                           <mat-expansion-panel-header>
@@ -288,7 +289,7 @@
                                                 </div>
 
 
-                                                <div class="col-lg-12 mat-Margin">
+                                                <div class="page-body mat-Margin">
                                                     <div class="card">
                                                         
                                                         <div class="card-header">
@@ -299,7 +300,7 @@
                                                         </div>
                                                         <div class="card-block table-border-style ">
                                                           
-                                                            <div class="card-block table-border-style">
+                                                           
                                                                 <div class="table-responsive">
                                                                     <table class="table nestable-inverse ">
                                                                         
@@ -341,7 +342,7 @@
         
         
         
-                                                      </div>   
+                                                      
                                                     </div>
                                                   </div>  
 
