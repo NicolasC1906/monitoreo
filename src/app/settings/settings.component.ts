@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatAccordion} from '@angular/material/expansion';
 import { ApiService } from '../services/api.service';
@@ -7,9 +7,15 @@ import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
 import { SpinnerService } from '../services/spinner.service'; 
 import {NgxPaginationModule} from 'ngx-pagination';
-import {FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {map, startWith} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { jsonEval } from '@firebase/util';
+
+
+
 
 @Component({
   selector: 'app-settings',
@@ -21,7 +27,7 @@ export class SettingsComponent implements OnInit {
   id:any;
   subscriptions:Subscription[]=[];
   username: any;
-  nombre: any;
+  nombreuser: any;
   apellido: any;
   roles: any;
   users:any = [];
@@ -37,6 +43,14 @@ export class SettingsComponent implements OnInit {
   cp: number = 1;
   getCiudades: any = [];
 
+  firstFormGroup: FormGroup | any;
+  secondFormGroup: FormGroup | any;
+  isEditable = false;
+  nombre: any;
+  lat: any;
+  lng: any;
+  err: any;
+
 
   
 
@@ -44,7 +58,9 @@ export class SettingsComponent implements OnInit {
     private ApiService: ApiService,
     private SpinnerService: SpinnerService,
     private spinner: NgxSpinnerService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private _formBuilder: FormBuilder
+    
   ) { }
   
 
@@ -73,7 +89,7 @@ export class SettingsComponent implements OnInit {
   }
 
   myControl = new FormControl();
-  options: string[] = ['Bogota', 'Bucaramanga', 'Medellin', 'Madrid'];
+  options: string[] = ['Bogotá', 'Bucaramanga', 'Medellin', 'Madrid'];
   
 
 
@@ -96,6 +112,8 @@ export class SettingsComponent implements OnInit {
 
   tabLoadTimes: Date[] = [];
 
+  hide = true;
+
   getTimeLoaded(index: number) {
     if (!this.tabLoadTimes[index]) {
       this.tabLoadTimes[index] = new Date();
@@ -103,6 +121,8 @@ export class SettingsComponent implements OnInit {
 
     return this.tabLoadTimes[index];
   }
+
+  
   
 
   ngOnInit() {
@@ -121,6 +141,15 @@ export class SettingsComponent implements OnInit {
     }
 
     this.idUser = localStorage.getItem('id');
+
+
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required],
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required],
+    });
 
   }
 
@@ -216,7 +245,7 @@ export class SettingsComponent implements OnInit {
               "longitud":resp[i].lat,
               "latitud":resp[i].lng,
             })
-               console.log(this.getCiudades);
+              //  console.log(this.getCiudades);
   
           }
   
@@ -224,6 +253,24 @@ export class SettingsComponent implements OnInit {
        );
   
   
+      }
+
+      SetCity() {
+
+        let city =JSON.stringify({
+          "nombre": "Cucuta",
+          "lat": "6.230833",
+          "lng": "-75.590553"
+        }) 
+        
+        this.subscriptions.push(
+          this.ApiService
+          .CiudadesPost(city)
+          .subscribe((r : any) => {
+            console.log(r)
+           
+          })
+        )
       }
 
 

@@ -41,4 +41,33 @@
 .example-full-width {
   width: 100%;
 }
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
 
+.mat-form-field {
+  margin-top: 16px;
+}
+
+
+.aling-left {
+  align-items: flex-start;
+  align-content: left;
+  text-align: left;
+} 
+
+.aling-right {
+  align-items: right;
+  align-content: right;
+  text-align: right;
+  justify-content: space-between;
+} 
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}

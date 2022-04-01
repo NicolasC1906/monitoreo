@@ -7,6 +7,7 @@ import { AbstractControl } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,8 @@ export class ApiService {
   private login: string = "https://api-mirror-marketing.herokuapp.com/sign-up";
 
   private userData: string = "https://api-mirror-marketing.herokuapp.com/";
+
+  private citypost: string = "https://api-mirror-marketing.herokuapp.com/";
 
   //espejos por sitio
   private mirrorSite: string = "https://api-mirror-marketing.herokuapp.com/espejo/";
@@ -56,7 +59,23 @@ export class ApiService {
   }
 
 
-  getUser(){
+  CiudadesPost(city: any): Observable<any> {
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/ciudad", city, { responseType: 'text' });
+  }
+
+
+  PostCity(){
+
+    let header = new HttpHeaders()
+    .set('Type-content', 'aplication/json')
+
+		return this.http.get(`${this.citypost}users`,{
+      headers: header
+    });
+
+	}
+
+  getUser(city: any): Observable<any> {
 
     let header = new HttpHeaders()
     .set('Type-content', 'aplication/json')

@@ -218,7 +218,10 @@
                                                                      aria-label="Number"
                                                                      matInput
                                                                      [formControl]="myControl"
-                                                                     [matAutocomplete]="auto">
+                                                                     [matAutocomplete]="auto"
+                                                                     [(ngModel)]="nombre"
+                                                                     name="nombre"
+                                                                     >
                                                               <mat-autocomplete #auto="matAutocomplete">
                                                                 <mat-option *ngFor="let option of options" [value]="option">
                                                                   {{option}}
@@ -246,7 +249,10 @@
                                                           <form class="example-form">
                                                             <mat-form-field class="example-full-width" appearance="fill">
                                                               <mat-label>Latitud</mat-label>
-                                                              <input matInput placeholder="Latitud Exacta">
+                                                              <input matInput 
+                                                              placeholder="Latitud Exacta"
+                                                              [(ngModel)]="lat"
+                                                              name="lat">
                                                             </mat-form-field>
                                                           </form>
                                                       
@@ -270,13 +276,17 @@
                                                           <form class="example-form">
                                                             <mat-form-field class="example-full-width" appearance="fill">
                                                               <mat-label>Longitd</mat-label>
-                                                              <input matInput placeholder="Longitd Exacta">
+                                                              <input 
+                                                              matInput 
+                                                              placeholder="Longitd Exacta"
+                                                              [(ngModel)]="lng"
+                                                              name="lng">
                                                             </mat-form-field>
                                                           </form>
 
                                                           <mat-action-row>
                                                             <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
-                                                            <button mat-button class="btn btn-mat btn-primary text-white" (click)="openSnackBar('Registrado', 'Cancelar')">
+                                                            <button mat-button class="btn btn-mat btn-primary text-white" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">
                                                                 Finalizar
                                                               </button>
                                                           </mat-action-row>
@@ -313,7 +323,7 @@
                                                                               </tr>
                                                                         </thead>
                                                                         <tbody  class=" table-hover" >
-                                                                            <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 5, currentPage: cp  }">
+                                                                            <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 20, currentPage: cp  }">
                                                                               <th scope="row" class=" text-center">{{data.id}}</th>
                                                                               <td class=" text-center">{{data.nombre}}</td>
                                                                               <td class=" text-center">{{data.latitud}}</td>
@@ -353,7 +363,97 @@
                                                   <mat-icon class="example-tab-icon">local_mall </mat-icon>
                                                   Categorias
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de Sitios Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+
+                                                <div class="mat-Margin">
+                                                 
+                                                  <mat-accordion class="example-headers-align"  multi="false">
+                                                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                                                      <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                         Ciudad
+                                                        </mat-panel-title>
+                                                        <mat-panel-description>
+                                                            Escribir o elegir.
+                                                          <mat-icon>location_city</mat-icon>
+                                                        </mat-panel-description>
+                                                      </mat-expansion-panel-header>
+                                                  
+                                                      <form class="example-form">
+                                                        <mat-form-field class="example-full-width" appearance="fill">
+                                                          <mat-label>Ciudad</mat-label>
+                                                          <input type="text"
+                                                                 placeholder="Elige o Escriba"
+                                                                 aria-label="Number"
+                                                                 matInput
+                                                                 [formControl]="myControl"
+                                                                 [matAutocomplete]="auto">
+                                                          <mat-autocomplete #auto="matAutocomplete">
+                                                            <mat-option *ngFor="let option of options" [value]="option">
+                                                              {{option}}
+                                                            </mat-option>
+                                                          </mat-autocomplete>
+                                                        </mat-form-field>
+                                                      </form>
+
+                                                      <mat-action-row>
+                                                        <button mat-button  class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
+                                                      </mat-action-row>
+                                                    </mat-expansion-panel>
+                                                  
+                                                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                                                      <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                          Latitud
+                                                        </mat-panel-title>
+                                                        <mat-panel-description>
+                                                            Latitud de Ciudad
+                                                          <mat-icon> my_location</mat-icon>
+                                                        </mat-panel-description>
+                                                      </mat-expansion-panel-header>
+                                                  
+                                                      <form class="example-form">
+                                                        <mat-form-field class="example-full-width" appearance="fill">
+                                                          <mat-label>Latitud</mat-label>
+                                                          <input matInput placeholder="Latitud Exacta">
+                                                        </mat-form-field>
+                                                      </form>
+                                                  
+                                                      <mat-action-row>
+                                                        <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
+                                                        <button mat-button class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
+                                                      </mat-action-row>
+                                                    </mat-expansion-panel>
+                                                  
+                                                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                                                      <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                          Longitud
+                                                        </mat-panel-title>
+                                                        <mat-panel-description>
+                                                            Longitud de Ciudad
+                                                          <mat-icon>short_text</mat-icon>
+                                                        </mat-panel-description>
+                                                      </mat-expansion-panel-header>
+
+                                                      <form class="example-form">
+                                                        <mat-form-field class="example-full-width" appearance="fill">
+                                                          <mat-label>Longitd</mat-label>
+                                                          <input matInput placeholder="Longitd Exacta">
+                                                        </mat-form-field>
+                                                      </form>
+
+                                                      <mat-action-row>
+                                                        <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
+                                                        <button mat-button class="btn btn-mat btn-primary text-white" (click)="openSnackBar('Registrado', 'Cancelar')">
+                                                            Finalizar
+                                                          </button>
+                                                      </mat-action-row>
+                                                    </mat-expansion-panel>
+                                                  
+                                                  </mat-accordion>
+                                                  
+                                                
+                                                </div>
                                               </mat-tab>
 
                                               <mat-tab>
@@ -369,7 +469,9 @@
                                                   <mat-icon class="example-tab-icon">camera_front </mat-icon>
                                                   Baños
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de Baños Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                                <div class="mat-Margin">
+                                                 
+                                                </div>
                                               </mat-tab>
 
                                               <mat-tab>
@@ -393,7 +495,52 @@
                                                   <mat-icon class="example-tab-icon">supervised_user_circle </mat-icon>
                                                   Usuarios
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                                <div class="mat-Margin">
+                                                  
+                                                  
+                                                  <mat-stepper labelPosition="bottom" #stepper>
+                                                    <mat-step [stepControl]="firstFormGroup">
+                                                      <form [formGroup]="firstFormGroup">
+                                                        <ng-template matStepLabel>Nombre de Usuario</ng-template>
+                                                        <mat-form-field class="example-full-width"  appearance="fill">
+                                                          <mat-label>Nombre Usuario</mat-label>
+                                                          <input  matInput placeholder="nombre.apellido" formControlName="firstCtrl" required>
+                                                        </mat-form-field>
+                                                        <mat-action-row>
+                                                          <button mat-button matStepperNext mat-button class="btn btn-mat btn-primary text-white">Siguiente</button>
+                                                        </mat-action-row>
+                                                      </form>
+                                                    </mat-step>
+                                                    <mat-step [stepControl]="secondFormGroup" required>
+                                                      <form [formGroup]="secondFormGroup">
+                                                        <ng-template matStepLabel>Contraseña</ng-template>
+                                                        <mat-form-field class="example-full-width" appearance="outline">
+                                                          <mat-label>Ingresar Contraseña</mat-label>
+                                                          <input matInput [type]="hide ? 'password' : 'text'">
+                                                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                                          </button>
+                                                          <mat-hint>La contraseña debe contener <code>! " # $ % &</code></mat-hint>
+                                                        </mat-form-field>
+                                                        <mat-action-row>
+                                                          <button mat-button matStepperPrevious class="btn btn-mat btn-danger text-white" >Anterior</button>
+                                                          <button mat-button matStepperNext mat-button class="btn btn-mat btn-primary text-white">Siguiente</button>
+                                                        </mat-action-row>
+                                                      </form>
+                                                    </mat-step>
+                                                    <mat-step>
+                                                      <ng-template matStepLabel>Done</ng-template>
+                                                      <p>You are now done.</p>
+                                                      <mat-action-row> 
+                                                        <button mat-button matStepperPrevious class="btn btn-mat btn-danger text-white" >Anterior</button>
+                                                        <button mat-button (click)="stepper.reset()">Reset</button>
+                                                      </mat-action-row>
+                                                    </mat-step>
+                                                  </mat-stepper>
+                                                  
+                                                
+                                                
+                                                </div>
                                               </mat-tab>
 
                                               

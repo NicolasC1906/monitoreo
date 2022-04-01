@@ -34,6 +34,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 
@@ -70,7 +72,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatInputModule,
     MatAutocompleteModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatNativeDateModule,
+    MatStepperModule
+    
 	],
    providers: [
       {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
