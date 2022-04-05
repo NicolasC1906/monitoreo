@@ -36,6 +36,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -74,7 +77,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatTableModule,
     MatPaginatorModule,
     MatNativeDateModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDividerModule,
+    MatDialogModule
     
 	],
    providers: [

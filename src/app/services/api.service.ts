@@ -30,6 +30,13 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
+
+  
+
+
+
+
+
   getData(){
 
     let header = new HttpHeaders()
@@ -60,7 +67,9 @@ export class ApiService {
 
 
   CiudadesPost(city: any): Observable<any> {
-    return this.http.post("https://api-mirror-marketing.herokuapp.com/ciudad", city, { responseType: 'text' });
+    console.log(city)
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/ciudad", city, { headers } );
   }
 
 

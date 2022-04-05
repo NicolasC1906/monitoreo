@@ -13,6 +13,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { jsonEval } from '@firebase/util';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -63,7 +64,7 @@ export class SettingsComponent implements OnInit {
     
   ) { }
   
-
+  
 
   onPageChange(event: number):void{
     this.spinner.show();
@@ -257,21 +258,26 @@ export class SettingsComponent implements OnInit {
 
       SetCity() {
 
-        let city =JSON.stringify({
-          "nombre": "Cucuta",
-          "lat": "6.230833",
-          "lng": "-75.590553"
-        }) 
+        let city = {
+          "nombre":"Cucuta",
+          "lat":"6.230833",
+          "lng":"-75.590553"
+        }
         
         this.subscriptions.push(
+          
           this.ApiService
-          .CiudadesPost(city)
+          .CiudadesPost(JSON.parse(JSON.stringify(city)))  
           .subscribe((r : any) => {
             console.log(r)
-           
+            // window.location.href = '/configuracion'
           })
         )
+
       }
 
+
+
+      
 
 }
