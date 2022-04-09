@@ -119,6 +119,10 @@ export class ApiService {
     return this.http.get(`${this.url}ciudades`);
   }
 
+  getCityById(id: any){
+
+    return this.http.get(`${this.url}ciudades/${id}`);
+  }
 
   //Tabla espejos
   

@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit {
   lat: any;
   lng: any;
   err: any;
-
+  ctyId:any = [];
 
   
 
@@ -274,6 +274,26 @@ export class SettingsComponent implements OnInit {
           })
         )
 
+      }
+
+
+      getCityId(id: any){ 
+        this.ApiService
+        .getDataByID(id) 
+        .subscribe((r : any) =>{
+         
+          this.ctyId.push ({
+            
+            "nombre":r.nombre,
+            "lat":r.lat,
+            "lng":r.lng
+
+          })
+  
+        }
+       );
+  
+  
       }
 
 

@@ -113,3 +113,17 @@ input.example-right-align {
 ::ng-deep .mat-form-field.mat-focused .mat-input-element {
     color: #ff884d;
 }
+
+
+.modal-backdrop {
+  background-color: rgba(0,0,0,.0001) !important;
+}
+
+.modal-content {
+  background-color: transparent !important;
+  border: 0px !important
+}
+
+.modal-header {
+  border: 0px !important
+}

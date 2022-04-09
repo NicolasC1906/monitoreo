@@ -311,7 +311,7 @@
                                                                   </tr>
                                                             </thead> 
                                                             <tbody  class=" table-hover" >
-                                                                <tr *ngFor = "let data of getInfoRasp | paginate: { itemsPerPage: 2, currentPage: cp  }">
+                                                                <tr *ngFor = "let data of getInfoRasp | paginate: { itemsPerPage: 10, currentPage: cp  }">
                                                                   <th scope="row" class=" text-center">{{data.id}}</th>
                                                                   <td class=" text-center">{{data.nombre}}</td>
                                                                   <td class=" text-center">{{data.sitio}}</td>
