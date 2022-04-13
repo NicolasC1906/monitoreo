@@ -121,9 +121,18 @@ export class ApiService {
 
   getCityById(id: any){
 
-    return this.http.get(`${this.url}ciudades/${id}`);
+    return this.http.get(`${this.url}ciudad/${id}`);
   }
 
+  putciudad(city: any, id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.put("https://api-mirror-marketing.herokuapp.com/ciudad/" + id, city, { headers } );
+  }
+
+  deleteCiudad( id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.delete("https://api-mirror-marketing.herokuapp.com/ciudad/" + id, { headers } );
+  }
   //Tabla espejos
   
   getInfoMirror(){

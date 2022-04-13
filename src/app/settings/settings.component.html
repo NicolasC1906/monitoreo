@@ -286,8 +286,8 @@
                                                                                           <tr>
                                                                                             <th scope="col" class=" text-center">ID Ciudad</th>
                                                                                             <th scope="col" class=" text-center">Nombre</th>
-                                                                                            <th scope="col" class=" text-center">Latitud</th>
                                                                                             <th scope="col" class=" text-center">Longitud</th>
+                                                                                            <th scope="col" class=" text-center">Latitud</th>
                                                                                             <th scope="col" class=" text-center">Accion</th>
                                                                                           </tr>
                                                                                       </thead>
@@ -302,8 +302,8 @@
                                                                                               <td class="dropdown">
                                                                                                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
                                                                                                   <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
-                                                                                                      <a class="dropdown-item"  data-toggle="modal" data-target="#exampleModal"><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
-                                                                                                      <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                      <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                      <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
                                                                                                   </div>
                                                                                               </td>
                                                                                           </tr>
@@ -345,94 +345,132 @@
 
                                                 <div class="mat-Margin">
                                                  
-                                                  <mat-accordion class="example-headers-align"  multi="false">
-                                                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-                                                      <mat-expansion-panel-header>
-                                                        <mat-panel-title>
-                                                         Ciudad
-                                                        </mat-panel-title>
-                                                        <mat-panel-description>
-                                                            Escribir o elegir.
-                                                          <mat-icon>location_city</mat-icon>
-                                                        </mat-panel-description>
-                                                      </mat-expansion-panel-header>
-                                                  
-                                                      <form class="example-form">
-                                                        <mat-form-field class="example-full-width" appearance="fill">
-                                                          <mat-label>Ciudad</mat-label>
-                                                          <input type="text"
-                                                                 placeholder="Elige o Escriba"
-                                                                 aria-label="Number"
-                                                                 matInput
-                                                                 [formControl]="myControl"
-                                                                 [matAutocomplete]="auto">
-                                                          <mat-autocomplete #auto="matAutocomplete">
-                                                            <mat-option *ngFor="let option of options" [value]="option">
-                                                              {{option}}
-                                                            </mat-option>
-                                                          </mat-autocomplete>
-                                                        </mat-form-field>
-                                                      </form>
+                                                  <div class="card-block">
+                                                    <div class="col-lg-12">
+                                                      <div class="card widget-card-1">
+                                                          <div class="card-block-small">
+                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
+                                                              <span class="text-c-green f-w-600">Registro Categorias</span>
+                                                              <br><br>
+                                                              <form>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">ID Ciudad</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>ID Ciudad</mat-label>
+                                                                    <input type="text"
+                                                                           placeholder="Elige o Escriba"
+                                                                           aria-label="Number"
+                                                                           matInput
+                                                                           [formControl]="myControlCategory"
+                                                                           [matAutocomplete]="auto"
+                                                                           [(ngModel)]="nombre"
+                                                                           name="ID_Ciudad"
+                                                                           >
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                      <mat-option *ngFor="let option of options" [value]="option.id">
+                                                                        {{option.nombre}}
+                                                                      </mat-option>
+                                                                    </mat-autocomplete>
+                                                                  </mat-form-field>
 
-                                                      <mat-action-row>
-                                                        <button mat-button  class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
-                                                      </mat-action-row>
-                                                    </mat-expansion-panel>
-                                                  
-                                                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                                                      <mat-expansion-panel-header>
-                                                        <mat-panel-title>
-                                                          Latitud
-                                                        </mat-panel-title>
-                                                        <mat-panel-description>
-                                                            Latitud de Ciudad
-                                                          <mat-icon> my_location</mat-icon>
-                                                        </mat-panel-description>
-                                                      </mat-expansion-panel-header>
-                                                  
-                                                      <form class="example-form">
-                                                        <mat-form-field class="example-full-width" appearance="fill">
-                                                          <mat-label>Latitud</mat-label>
-                                                          <input matInput placeholder="Latitud Exacta">
-                                                        </mat-form-field>
-                                                      </form>
-                                                  
-                                                      <mat-action-row>
-                                                        <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
-                                                        <button mat-button class="btn btn-mat btn-primary text-white" (click)="nextStep()">Siguiente</button>
-                                                      </mat-action-row>
-                                                    </mat-expansion-panel>
-                                                  
-                                                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-                                                      <mat-expansion-panel-header>
-                                                        <mat-panel-title>
-                                                          Longitud
-                                                        </mat-panel-title>
-                                                        <mat-panel-description>
-                                                            Longitud de Ciudad
-                                                          <mat-icon>short_text</mat-icon>
-                                                        </mat-panel-description>
-                                                      </mat-expansion-panel-header>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Select</mat-label>
+                                                                    <mat-select>
+                                                                      <mat-option *ngFor="let option of options" [value]="option.id">
+                                                                        {{option.nombre}}
+                                                                      </mat-option>
+                                                                    </mat-select>
+                                                                  </mat-form-field>
+                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
 
-                                                      <form class="example-form">
-                                                        <mat-form-field class="example-full-width" appearance="fill">
-                                                          <mat-label>Longitd</mat-label>
-                                                          <input matInput placeholder="Longitd Exacta">
-                                                        </mat-form-field>
-                                                      </form>
-
-                                                      <mat-action-row>
-                                                        <button mat-button class="btn btn-mat btn-danger text-white" (click)="prevStep()">Anterior</button>
-                                                        <button mat-button class="btn btn-mat btn-primary text-white" (click)="openSnackBar('Registrado', 'Cancelar')">
-                                                            Finalizar
-                                                          </button>
-                                                      </mat-action-row>
-                                                    </mat-expansion-panel>
-                                                  
-                                                  </mat-accordion>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre Categoria</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Nombre</mat-label>
+                                                                    <input matInput #message maxlength="256" placeholder="Ex. Baños, Centro Comercial">
+                                                                    <mat-hint align="start"><strong>Nombre de Categoria del sitio</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                              </form>
+                                                              <div>
+                                                                  <span class="f-left m-t-10 text-muted">
+                                                                      <i class="text-c-green f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Categorias
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
                                                   
                                                 
                                                 </div>
+
+                                                <div class="page-body mat-Margin">
+                                                  <div class="card">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                        </div>
+                                                                        <div class="card-block contact-details">
+                                                                            <div class="data_table_main table-responsive dt-responsive">
+                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">Nombre</th>
+                                                                                          <th scope="col" class=" text-center">Longitud</th>
+                                                                                          <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">Accion</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                          <td class=" text-center">{{data.nombre}}</td>
+                                                                                          <td class=" text-center">{{data.latitud}}</td>
+                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                            
+                                                                                            
+                                                                                            <td class="dropdown">
+                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <!-- Paginación -->
+                                                                  <br><br>
+                                                                  <div class="pro-result pagination-style">
+                                                                      <div class="clearfix">
+                                                                      <pagination-controls  
+                                                                      class="my-pagination pagination-style" 
+                                                                      (pageChange)="onPageChange 
+                                                                      ($event)" 
+                                                                      
+                                                                      previousLabel = " Anterior "
+                                                                      nextLabel = " Siguiente " 
+                                                                      >
+                                                                      </pagination-controls>
+                                                                      </div>
+                                                                  </div>
+                                                                  <!-- Paginación -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+
+                                                                    
+
+                                                  </div>
+                                                </div>  
                                               </mat-tab>
 
                                               <mat-tab>
@@ -440,7 +478,135 @@
                                                   <mat-icon class="example-tab-icon">add_location </mat-icon>
                                                   Sitios
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de Baños Acesso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                                <div class="mat-Margin">
+                                                  <div class="card-block">
+                                                    <div class="col-lg-12">
+                                                      <div class="card widget-card-1">
+                                                          <div class="card-block-small">
+                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
+                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <br><br>
+                                                              <form>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Ciudad</mat-label>
+                                                                    <input type="text"
+                                                                           placeholder="Elige o Escriba"
+                                                                           aria-label="Number"
+                                                                           matInput
+                                                                           [formControl]="myControl"
+                                                                           [matAutocomplete]="auto"
+                                                                           [(ngModel)]="nombre"
+                                                                           name="nombre"
+                                                                           >
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                      <mat-option *ngFor="let option of options" [value]="option">
+                                                                        {{option}}
+                                                                      </mat-option>
+                                                                    </mat-autocomplete>
+                                                                  </mat-form-field>
+                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Latitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Latitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
+                                                                    name="lat">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Longitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Longitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
+                                                                    name="lng">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                              </form>
+                                                              <div>
+                                                                  <span class="f-left m-t-10 text-muted">
+                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                  
+                                                
+                                                </div>
+
+                                                <div class="page-body mat-Margin">
+                                                  <div class="card">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                        </div>
+                                                                        <div class="card-block contact-details">
+                                                                            <div class="data_table_main table-responsive dt-responsive">
+                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">Nombre</th>
+                                                                                          <th scope="col" class=" text-center">Longitud</th>
+                                                                                          <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">Accion</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                          <td class=" text-center">{{data.nombre}}</td>
+                                                                                          <td class=" text-center">{{data.latitud}}</td>
+                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                            
+                                                                                            
+                                                                                            <td class="dropdown">
+                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <!-- Paginación -->
+                                                                  <br><br>
+                                                                  <div class="pro-result pagination-style">
+                                                                      <div class="clearfix">
+                                                                      <pagination-controls  
+                                                                      class="my-pagination pagination-style" 
+                                                                      (pageChange)="onPageChange 
+                                                                      ($event)" 
+                                                                      
+                                                                      previousLabel = " Anterior "
+                                                                      nextLabel = " Siguiente " 
+                                                                      >
+                                                                      </pagination-controls>
+                                                                      </div>
+                                                                  </div>
+                                                                  <!-- Paginación -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+
+                                                                    
+
+                                                  </div>
+                                                </div>  
                                               </mat-tab>
 
                                               <mat-tab>
@@ -449,8 +615,134 @@
                                                   Baños
                                                 </ng-template>
                                                 <div class="mat-Margin">
-                                                 
+                                                  <div class="card-block">
+                                                    <div class="col-lg-12">
+                                                      <div class="card widget-card-1">
+                                                          <div class="card-block-small">
+                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
+                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <br><br>
+                                                              <form>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Ciudad</mat-label>
+                                                                    <input type="text"
+                                                                           placeholder="Elige o Escriba"
+                                                                           aria-label="Number"
+                                                                           matInput
+                                                                           [formControl]="myControl"
+                                                                           [matAutocomplete]="auto"
+                                                                           [(ngModel)]="nombre"
+                                                                           name="nombre"
+                                                                           >
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                      <mat-option *ngFor="let option of options" [value]="option">
+                                                                        {{option}}
+                                                                      </mat-option>
+                                                                    </mat-autocomplete>
+                                                                  </mat-form-field>
+                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Latitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Latitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
+                                                                    name="lat">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Longitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Longitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
+                                                                    name="lng">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                              </form>
+                                                              <div>
+                                                                  <span class="f-left m-t-10 text-muted">
+                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
                                                 </div>
+                                                  
+                                                
+                                                </div>
+
+                                                <div class="page-body mat-Margin">
+                                                  <div class="card">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                        </div>
+                                                                        <div class="card-block contact-details">
+                                                                            <div class="data_table_main table-responsive dt-responsive">
+                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">Nombre</th>
+                                                                                          <th scope="col" class=" text-center">Longitud</th>
+                                                                                          <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">Accion</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                          <td class=" text-center">{{data.nombre}}</td>
+                                                                                          <td class=" text-center">{{data.latitud}}</td>
+                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                            
+                                                                                            
+                                                                                            <td class="dropdown">
+                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <!-- Paginación -->
+                                                                  <br><br>
+                                                                  <div class="pro-result pagination-style">
+                                                                      <div class="clearfix">
+                                                                      <pagination-controls  
+                                                                      class="my-pagination pagination-style" 
+                                                                      (pageChange)="onPageChange 
+                                                                      ($event)" 
+                                                                      
+                                                                      previousLabel = " Anterior "
+                                                                      nextLabel = " Siguiente " 
+                                                                      >
+                                                                      </pagination-controls>
+                                                                      </div>
+                                                                  </div>
+                                                                  <!-- Paginación -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+
+                                                                    
+
+                                                  </div>
+                                                </div>  
                                               </mat-tab>
 
                                               <mat-tab>
@@ -458,7 +750,135 @@
                                                   <mat-icon class="example-tab-icon">face </mat-icon>
                                                   Generos
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                                <div class="mat-Margin">
+                                                  <div class="card-block">
+                                                    <div class="col-lg-12">
+                                                      <div class="card widget-card-1">
+                                                          <div class="card-block-small">
+                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
+                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <br><br>
+                                                              <form>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Ciudad</mat-label>
+                                                                    <input type="text"
+                                                                           placeholder="Elige o Escriba"
+                                                                           aria-label="Number"
+                                                                           matInput
+                                                                           [formControl]="myControl"
+                                                                           [matAutocomplete]="auto"
+                                                                           [(ngModel)]="nombre"
+                                                                           name="nombre"
+                                                                           >
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                      <mat-option *ngFor="let option of options" [value]="option">
+                                                                        {{option}}
+                                                                      </mat-option>
+                                                                    </mat-autocomplete>
+                                                                  </mat-form-field>
+                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Latitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Latitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
+                                                                    name="lat">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Longitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Longitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
+                                                                    name="lng">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                              </form>
+                                                              <div>
+                                                                  <span class="f-left m-t-10 text-muted">
+                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                  
+                                                
+                                                </div>
+
+                                                <div class="page-body mat-Margin">
+                                                  <div class="card">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                        </div>
+                                                                        <div class="card-block contact-details">
+                                                                            <div class="data_table_main table-responsive dt-responsive">
+                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">Nombre</th>
+                                                                                          <th scope="col" class=" text-center">Longitud</th>
+                                                                                          <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">Accion</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                          <td class=" text-center">{{data.nombre}}</td>
+                                                                                          <td class=" text-center">{{data.latitud}}</td>
+                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                            
+                                                                                            
+                                                                                            <td class="dropdown">
+                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <!-- Paginación -->
+                                                                  <br><br>
+                                                                  <div class="pro-result pagination-style">
+                                                                      <div class="clearfix">
+                                                                      <pagination-controls  
+                                                                      class="my-pagination pagination-style" 
+                                                                      (pageChange)="onPageChange 
+                                                                      ($event)" 
+                                                                      
+                                                                      previousLabel = " Anterior "
+                                                                      nextLabel = " Siguiente " 
+                                                                      >
+                                                                      </pagination-controls>
+                                                                      </div>
+                                                                  </div>
+                                                                  <!-- Paginación -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+
+                                                                    
+
+                                                  </div>
+                                                </div>  
                                               </mat-tab>
 
                                               <mat-tab>
@@ -466,7 +886,135 @@
                                                   <mat-icon class="example-tab-icon">memory  </mat-icon>
                                                   Raspberri Pi
                                                 </ng-template>
-                                                <div class="mat-Margin">Contenido de ciudades Acceso: {{getTimeLoaded(1) | date:'medium'}}</div>
+                                                <div class="mat-Margin">
+                                                  <div class="card-block">
+                                                    <div class="col-lg-12">
+                                                      <div class="card widget-card-1">
+                                                          <div class="card-block-small">
+                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
+                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <br><br>
+                                                              <form>
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Ciudad</mat-label>
+                                                                    <input type="text"
+                                                                           placeholder="Elige o Escriba"
+                                                                           aria-label="Number"
+                                                                           matInput
+                                                                           [formControl]="myControl"
+                                                                           [matAutocomplete]="auto"
+                                                                           [(ngModel)]="nombre"
+                                                                           name="nombre"
+                                                                           >
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                      <mat-option *ngFor="let option of options" [value]="option">
+                                                                        {{option}}
+                                                                      </mat-option>
+                                                                    </mat-autocomplete>
+                                                                  </mat-form-field>
+                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Latitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Latitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
+                                                                    name="lat">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Longitud</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Longitud</mat-label>
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
+                                                                    name="lng">
+                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                              </form>
+                                                              <div>
+                                                                  <span class="f-left m-t-10 text-muted">
+                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                  
+                                                
+                                                </div>
+
+                                                <div class="page-body mat-Margin">
+                                                  <div class="card">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                        </div>
+                                                                        <div class="card-block contact-details">
+                                                                            <div class="data_table_main table-responsive dt-responsive">
+                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">Nombre</th>
+                                                                                          <th scope="col" class=" text-center">Longitud</th>
+                                                                                          <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">Accion</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                          <td class=" text-center">{{data.nombre}}</td>
+                                                                                          <td class=" text-center">{{data.latitud}}</td>
+                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                            
+                                                                                            
+                                                                                            <td class="dropdown">
+                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                                <!-- Paginación -->
+                                                                  <br><br>
+                                                                  <div class="pro-result pagination-style">
+                                                                      <div class="clearfix">
+                                                                      <pagination-controls  
+                                                                      class="my-pagination pagination-style" 
+                                                                      (pageChange)="onPageChange 
+                                                                      ($event)" 
+                                                                      
+                                                                      previousLabel = " Anterior "
+                                                                      nextLabel = " Siguiente " 
+                                                                      >
+                                                                      </pagination-controls>
+                                                                      </div>
+                                                                  </div>
+                                                                  <!-- Paginación -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                    
+
+                                                                    
+
+                                                  </div>
+                                                </div>  
                                               </mat-tab>
 
                                               <mat-tab>
@@ -580,6 +1128,7 @@
                                  [matAutocomplete]="auto"
                                  [(ngModel)]="nombre"
                                  name="nombre"
+                                 
                                  >
                           <mat-autocomplete #auto="matAutocomplete">
                             <mat-option *ngFor="let option of options" [value]="option">
@@ -594,7 +1143,7 @@
                         <h4 class="sub-title">Latitud</h4>
                         <mat-form-field class="example-full-width" appearance="fill">
                           <mat-label>Latitud</mat-label>
-                          <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
+                          <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lat"
                           name="lat">
                           <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
                         </mat-form-field>
@@ -611,8 +1160,9 @@
                         </mat-form-field>
                         
                       </div>
+
                       
-                      <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Actualizar</button>
+                      <button type="submit" class="btn btn-primary" (click)="putCityId()" (click)="openSnackBar('Editado  ', 'Ok')">Actualizar</button>
                     </form>
                     <div>
                     </div>

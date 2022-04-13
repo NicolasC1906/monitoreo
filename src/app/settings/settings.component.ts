@@ -52,6 +52,9 @@ export class SettingsComponent implements OnInit {
   lng: any;
   err: any;
   ctyId:any = [];
+  idcity: any;
+  categoryCityId: any;
+  getCiudadesId: any = [];
 
   
 
@@ -90,8 +93,33 @@ export class SettingsComponent implements OnInit {
   }
 
   myControl = new FormControl();
-  options: string[] = ['Bogotá', 'Bucaramanga', 'Medellin', 'Madrid'];
+  options = this.getCiudadesId
+
+
+  getCityID(){ 
+    this.ApiService
+    .getCitys() 
+    .subscribe((resp : any) =>{
+      let i;
+      //console.log(resp)
+      for(i in resp){
+        this.getCiudadesId.push({
+
+          "id":resp[i].id_ciudad,
+          "nombre":resp[i].nombre
+        })
+            console.log(this.getCiudadesId);
+
+      }
+
+    }
+   );
+
+
+  }
   
+  myControlCategory = new FormControl();
+  optionsIdCity: string[] = ['Bogotá'];
 
 
 
@@ -134,6 +162,7 @@ export class SettingsComponent implements OnInit {
       this.iniciar = false;
       this.perfil = true;
       this.getInfo()
+      this.getCityID()
 
 
     }else{
@@ -247,6 +276,7 @@ export class SettingsComponent implements OnInit {
               "latitud":resp[i].lng,
             })
               //  console.log(this.getCiudades);
+              this.categoryCityId = resp[i].id_ciudad
   
           }
   
@@ -259,9 +289,9 @@ export class SettingsComponent implements OnInit {
       SetCity() {
 
         let city = {
-          "nombre":"Cucuta",
-          "lat":"6.230833",
-          "lng":"-75.590553"
+          nombre: this.nombre,
+          lat: this.lat,
+          lng: this.lng
         }
         
         this.subscriptions.push(
@@ -270,18 +300,26 @@ export class SettingsComponent implements OnInit {
           .CiudadesPost(JSON.parse(JSON.stringify(city)))  
           .subscribe((r : any) => {
             console.log(r)
-            // window.location.href = '/configuracion'
+            location.reload();
           })
         )
 
       }
 
 
-      getCityId(id: any){ 
+      getCityId(id: any){
+        this.idcity = id
         this.ApiService
-        .getDataByID(id) 
+        .getCityById(id) 
         .subscribe((r : any) =>{
-         
+          console.log(r)
+          
+          this.nombre = r[0].nombre
+          this.lat = r[0].lat
+          this.lng = r[0].lng
+
+          console.log(this.nombre)
+
           this.ctyId.push ({
             
             "nombre":r.nombre,
@@ -289,12 +327,75 @@ export class SettingsComponent implements OnInit {
             "lng":r.lng
 
           })
+
   
         }
        );
+
   
   
       }
+
+      putCityId(){
+
+        let obj = {
+          "nombre": this.nombre,
+          "lat": this.lat,
+          "lng": this.lng
+        }
+        console.log(obj)
+
+        this.subscriptions.push(
+          
+          this.ApiService
+          .putciudad(JSON.parse(JSON.stringify(obj)), this.idcity)  
+          .subscribe((r : any) => {
+            console.log(r)
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Ciudad Actualizada',
+              showConfirmButton: false,
+              timer: 2500
+
+            })
+            location.reload();
+          })
+        )
+
+  
+         
+      }
+
+      eliminarId(id: any){
+        
+        Swal.fire({
+          title: '¿Estas seguro que desea eliminar registro?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, Eliminar registro!',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.subscriptions.push(
+          
+              this.ApiService
+              .deleteCiudad(id)  
+              .subscribe((r : any) => {
+                console.log(r)
+              })
+            )
+    
+            location.reload();
+          }
+        });
+        
+  
+         
+      }
+
 
 
 

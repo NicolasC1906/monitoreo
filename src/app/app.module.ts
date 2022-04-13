@@ -38,6 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -79,7 +80,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatNativeDateModule,
     MatStepperModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
     
 	],
    providers: [
