@@ -216,19 +216,13 @@
                                                                     <mat-form-field class="example-full-width" appearance="fill">
                                                                       <mat-label>Ciudad</mat-label>
                                                                       <input type="text"
-                                                                             placeholder="Elige o Escriba"
+                                                                             placeholder="Escriba el nombre de la Ciudad"
                                                                              aria-label="Number"
                                                                              matInput
                                                                              [formControl]="myControl"
-                                                                             [matAutocomplete]="auto"
                                                                              [(ngModel)]="nombre"
                                                                              name="nombre"
                                                                              >
-                                                                      <mat-autocomplete #auto="matAutocomplete">
-                                                                        <mat-option *ngFor="let option of options" [value]="option">
-                                                                          {{option}}
-                                                                        </mat-option>
-                                                                      </mat-autocomplete>
                                                                     </mat-form-field>
                                                                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                                                   </div>
@@ -355,28 +349,15 @@
                                                               <form>
                                                                 <div class="form-group">
                                                                   <h4 class="sub-title">ID Ciudad</h4>
-                                                                  <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>ID Ciudad</mat-label>
-                                                                    <input type="text"
-                                                                           placeholder="Elige o Escriba"
-                                                                           aria-label="Number"
-                                                                           matInput
-                                                                           [formControl]="myControlCategory"
-                                                                           [matAutocomplete]="auto"
-                                                                           [(ngModel)]="nombre"
-                                                                           name="ID_Ciudad"
-                                                                           >
-                                                                    <mat-autocomplete #auto="matAutocomplete">
-                                                                      <mat-option *ngFor="let option of options" [value]="option.id">
-                                                                        {{option.nombre}}
-                                                                      </mat-option>
-                                                                    </mat-autocomplete>
-                                                                  </mat-form-field>
 
                                                                   <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>Select</mat-label>
+                                                                    <mat-label>ID Ciudad</mat-label>
                                                                     <mat-select>
-                                                                      <mat-option *ngFor="let option of options" [value]="option.id">
+                                                                      <mat-option *ngFor="let option of options" 
+                                                                      [value]="option.id"
+                                                                      [(ngModel)]="idCiudad"
+                                                                      name="idCiudad"
+                                                                      >
                                                                         {{option.nombre}}
                                                                       </mat-option>
                                                                     </mat-select>
@@ -388,14 +369,20 @@
                                                                   <h4 class="sub-title">Nombre Categoria</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
                                                                     <mat-label>Nombre</mat-label>
-                                                                    <input matInput #message maxlength="256" placeholder="Ex. Baños, Centro Comercial">
+                                                                    <input matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. Baños, Centro Comercial"
+                                                                     [(ngModel)]="nameCategory"
+                                                                      name="nameCategory"
+                                                                      >
                                                                     <mat-hint align="start"><strong>Nombre de Categoria del sitio</strong> </mat-hint>
                                                                     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
                                                                   
                                                                 </div>
                                                                 
-                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                                <button type="submit" class="btn btn-primary" (click)="setCategory()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
                                                               </form>
                                                               <div>
                                                                   <span class="f-left m-t-10 text-muted">

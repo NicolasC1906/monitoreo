@@ -84,6 +84,37 @@ export class ApiService {
 
 	}
 
+
+  // Categorias
+  categoryPost(category: any): Observable<any> {
+    console.log(category)
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/categoria", category, { headers } );
+  }
+
+  getCategory(){
+
+    return this.http.get(`${this.url}categoria`);
+  }
+
+  getCategoyById(id: any){
+
+    return this.http.get(`${this.url}categoria/${id}`);
+  }
+
+  putCategory(category: any, id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.put("https://api-mirror-marketing.herokuapp.com/categoria/" + id, category, { headers } );
+  }
+
+  deleteCategory( id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.delete("https://api-mirror-marketing.herokuapp.com/categoria/" + id, { headers } );
+  }
+
+  // Categorias
+
+
   getUser(city: any): Observable<any> {
 
     let header = new HttpHeaders()

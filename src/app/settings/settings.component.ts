@@ -55,6 +55,12 @@ export class SettingsComponent implements OnInit {
   idcity: any;
   categoryCityId: any;
   getCiudadesId: any = [];
+  idCiudad: any;
+  nameCategory: any;
+  id_categoria: any;
+  id_ciudad: any;
+  nombreCategory: any;
+  categoryId: any;
 
   
 
@@ -108,7 +114,7 @@ export class SettingsComponent implements OnInit {
           "id":resp[i].id_ciudad,
           "nombre":resp[i].nombre
         })
-            console.log(this.getCiudadesId);
+            //console.log(this.getCiudadesId);
 
       }
 
@@ -130,11 +136,11 @@ export class SettingsComponent implements OnInit {
    let snackBarRef = this.snackBar.open(message, action, {duration: 2000});
 
    snackBarRef.afterDismissed().subscribe(() =>{
-     console.log("Accion Ejecutada")
+     //console.log("Accion Ejecutada")
    });
 
    snackBarRef.onAction().subscribe(() =>{
-    console.log("Cancelar Accion")
+    //console.log("Cancelar Accion")
   });
       
   }
@@ -312,13 +318,13 @@ export class SettingsComponent implements OnInit {
         this.ApiService
         .getCityById(id) 
         .subscribe((r : any) =>{
-          console.log(r)
+          //console.log(r)
           
           this.nombre = r[0].nombre
           this.lat = r[0].lat
           this.lng = r[0].lng
 
-          console.log(this.nombre)
+          //console.log(this.nombre)
 
           this.ctyId.push ({
             
@@ -343,7 +349,7 @@ export class SettingsComponent implements OnInit {
           "lat": this.lat,
           "lng": this.lng
         }
-        console.log(obj)
+        //console.log(obj)
 
         this.subscriptions.push(
           
@@ -397,8 +403,108 @@ export class SettingsComponent implements OnInit {
       }
 
 
+      // Catetorias
 
+      setCategory() {
+        let category = {
+          idCiudad: this.idCiudad,
+          nameCategory: this.nameCategory
+        }
+        this.subscriptions.push(
+          this.ApiService
+          .categoryPost(JSON.parse(JSON.stringify(category)))  
+          .subscribe((r : any) => {
+            console.log(r)
+            // location.reload();
+          })
+        )
+      }
 
+      getCategory(){ 
+        this.ApiService
+        .getCategory() 
+        .subscribe((resp : any) =>{
+          let i;
+          //console.log(resp)
+          for(i in resp){
+            this.getCiudades.push({
+              "id_categoria":resp[i].id_categoria,
+              "id_ciudad":resp[i].id_ciudad,
+              "nombre":resp[i].nombre,
+              "icono":resp[i].icono,
+            })
+              //  console.log(this.getCiudades);
+          }
+        }
+       );
+      }
+
+      getCategoryId(id: any){
+        this.idcity = id
+        this.ApiService
+        .getCategoyById(id) 
+        .subscribe((r : any) =>{
+          //console.log(r)
+          this.id_categoria = r[0].id_categoria
+          this.id_ciudad = r[0].id_ciudad
+          this.nombreCategory = r[0].nombre
+          //console.log(this.nombre)
+          this.categoryId.push ({
+            "id_categoria":r.id_categoria,
+            "id_ciudad":r.id_ciudad,
+            "nombre":r.nombre
+          })
+        }
+       );
+      }
+
+      putCategoryId(){
+        let obj = {
+          "nombre": this.nombre,
+          "lat": this.lat,
+          "lng": this.lng
+        }
+        //console.log(obj)
+        this.subscriptions.push(
+          this.ApiService
+          .putciudad(JSON.parse(JSON.stringify(obj)), this.idcity)  
+          .subscribe((r : any) => {
+            console.log(r)
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Ciudad Actualizada',
+              showConfirmButton: false,
+              timer: 2500
+            })
+            location.reload();
+          })
+        )
+      }
+
+      eliminarCategoryId(id: any){
+        Swal.fire({
+          title: '¿Estas seguro que desea eliminar registro?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, Eliminar registro!',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.subscriptions.push(
+              this.ApiService
+              .deleteCiudad(id)  
+              .subscribe((r : any) => {
+                console.log(r)
+              })
+            )
+            location.reload();
+          }
+        }); 
+      }
       
+    // Catetorias
 
 }
