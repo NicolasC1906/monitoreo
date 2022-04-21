@@ -89,7 +89,7 @@ export class ApiService {
   categoryPost(category: any): Observable<any> {
     console.log(category)
     const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
-    return this.http.post("https://api-mirror-marketing.herokuapp.com/categoria", category, { headers } );
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/categorias", category, { headers } );
   }
 
   getCategory(){

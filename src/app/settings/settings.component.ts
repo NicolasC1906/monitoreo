@@ -43,6 +43,7 @@ export class SettingsComponent implements OnInit {
 
   cp: number = 1;
   getCiudades: any = [];
+  getCategorias: any = [];
 
   firstFormGroup: FormGroup | any;
   secondFormGroup: FormGroup | any;
@@ -163,12 +164,14 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
 
     this.getCity();
+    this.getCategory();
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
       this.perfil = true;
       this.getInfo()
       this.getCityID()
+      
 
 
     }else{
@@ -407,8 +410,8 @@ export class SettingsComponent implements OnInit {
 
       setCategory() {
         let category = {
-          idCiudad: this.idCiudad,
-          nameCategory: this.nameCategory
+          idCiudad: "this.idCiudad",
+          nameCategory: "this.nameCategory"
         }
         this.subscriptions.push(
           this.ApiService
@@ -425,15 +428,15 @@ export class SettingsComponent implements OnInit {
         .getCategory() 
         .subscribe((resp : any) =>{
           let i;
-          //console.log(resp)
+          console.log("#1",resp)
           for(i in resp){
-            this.getCiudades.push({
+            this.getCategorias.push({
               "id_categoria":resp[i].id_categoria,
               "id_ciudad":resp[i].id_ciudad,
               "nombre":resp[i].nombre,
               "icono":resp[i].icono,
             })
-              //  console.log(this.getCiudades);
+                console.log("#2",this.getCategory);
           }
         }
        );
@@ -444,15 +447,15 @@ export class SettingsComponent implements OnInit {
         this.ApiService
         .getCategoyById(id) 
         .subscribe((r : any) =>{
-          //console.log(r)
+          console.log(r)
           this.id_categoria = r[0].id_categoria
           this.id_ciudad = r[0].id_ciudad
           this.nombreCategory = r[0].nombre
-          //console.log(this.nombre)
+          console.log(this.nombre)
           this.categoryId.push ({
             "id_categoria":r.id_categoria,
             "id_ciudad":r.id_ciudad,
-            "nombre":r.nombre
+            "nameCategory":r.nombre
           })
         }
        );
