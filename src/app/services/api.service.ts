@@ -89,7 +89,7 @@ export class ApiService {
   categoryPost(category: any): Observable<any> {
     console.log(category)
     const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
-    return this.http.post("https://api-mirror-marketing.herokuapp.com/categorias", category, { headers } );
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/categoria", category, { headers } );
   }
 
   getCategory(){
@@ -114,6 +114,35 @@ export class ApiService {
 
   // Categorias
 
+
+  // API SITIOS START
+  sitePost(site: any): Observable<any> {
+    console.log(site)
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/sitio", site, { headers } );
+  }
+
+  getSite(){
+
+    return this.http.get(`${this.url}sitio`);
+  }
+
+  getSiteyById(id: any){
+
+    return this.http.get(`${this.url}sitio/${id}`);
+  }
+
+  putSite(site: any, id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.put("https://api-mirror-marketing.herokuapp.com/sitio/" + id, site, { headers } );
+  }
+
+  deleteSite( id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.delete("https://api-mirror-marketing.herokuapp.com/sitio/" + id, { headers } );
+  }
+
+  // API STIOS END
 
   getUser(city: any): Observable<any> {
 

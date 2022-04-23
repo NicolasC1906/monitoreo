@@ -44,6 +44,7 @@ export class SettingsComponent implements OnInit {
   cp: number = 1;
   getCiudades: any = [];
   getCategorias: any = [];
+  getSites: any = [];
 
   firstFormGroup: FormGroup | any;
   secondFormGroup: FormGroup | any;
@@ -54,6 +55,8 @@ export class SettingsComponent implements OnInit {
   err: any;
   ctyId:any = [];
   idcity: any;
+  idCat: any;
+  idSit: any;
   categoryCityId: any;
   getCiudadesId: any = [];
   idCiudad: any;
@@ -62,6 +65,10 @@ export class SettingsComponent implements OnInit {
   id_ciudad: any;
   nombreCategory: any;
   categoryId: any;
+  categoriaId: any;
+  nombreSite: any;
+  latSite: any;
+  lngSite: any;
 
   
 
@@ -165,6 +172,7 @@ export class SettingsComponent implements OnInit {
 
     this.getCity();
     this.getCategory();
+    this.getSite();
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -394,10 +402,19 @@ export class SettingsComponent implements OnInit {
               .deleteCiudad(id)  
               .subscribe((r : any) => {
                 console.log(r)
+                if (r.status === "success"){
+
+                  location.reload();
+                }
+                else 
+                {
+                  Swal.fire({
+                    title: 'Elemento no eliminado',
+                    icon: 'warning',
+                  })
+                }
               })
             )
-    
-            location.reload();
           }
         });
         
@@ -410,15 +427,16 @@ export class SettingsComponent implements OnInit {
 
       setCategory() {
         let category = {
-          idCiudad: "this.idCiudad",
-          nameCategory: "this.nameCategory"
+          id_ciudad: this.idCiudad,
+          nombre: this.nameCategory,
+          icono: "feather icon-edit-1"
         }
         this.subscriptions.push(
           this.ApiService
           .categoryPost(JSON.parse(JSON.stringify(category)))  
           .subscribe((r : any) => {
             console.log(r)
-            // location.reload();
+             location.reload();
           })
         )
       }
@@ -428,7 +446,7 @@ export class SettingsComponent implements OnInit {
         .getCategory() 
         .subscribe((resp : any) =>{
           let i;
-          console.log("#1",resp)
+          //console.log("#1",resp)
           for(i in resp){
             this.getCategorias.push({
               "id_categoria":resp[i].id_categoria,
@@ -436,51 +454,53 @@ export class SettingsComponent implements OnInit {
               "nombre":resp[i].nombre,
               "icono":resp[i].icono,
             })
-                console.log("#2",this.getCategory);
+                //console.log("#2",this.getCategory);
           }
         }
        );
       }
 
       getCategoryId(id: any){
-        this.idcity = id
+        this.idCat = id
         this.ApiService
         .getCategoyById(id) 
         .subscribe((r : any) =>{
           console.log(r)
-          this.id_categoria = r[0].id_categoria
-          this.id_ciudad = r[0].id_ciudad
-          this.nombreCategory = r[0].nombre
-          console.log(this.nombre)
-          this.categoryId.push ({
-            "id_categoria":r.id_categoria,
-            "id_ciudad":r.id_ciudad,
-            "nameCategory":r.nombre
-          })
+          this.idCiudad = r[0].id_ciudad
+          this.nameCategory = r[0].nombre
         }
        );
       }
 
       putCategoryId(){
         let obj = {
-          "nombre": this.nombre,
-          "lat": this.lat,
-          "lng": this.lng
+          "id_ciudad": this.idCiudad,
+          "nombre": this.nameCategory,
+          "icono": "feather icon-edit-1"
         }
         //console.log(obj)
         this.subscriptions.push(
           this.ApiService
-          .putciudad(JSON.parse(JSON.stringify(obj)), this.idcity)  
+          .putCategory(JSON.parse(JSON.stringify(obj)), this.idCat)  
           .subscribe((r : any) => {
             console.log(r)
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Ciudad Actualizada',
-              showConfirmButton: false,
-              timer: 2500
-            })
-            location.reload();
+            if (r.status === "success"){
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Registro Actualizado',
+                showConfirmButton: false,
+                timer: 2500
+              })
+              location.reload();
+            }
+            else 
+            {
+              Swal.fire({
+                title: 'Elemento no eliminado',
+                icon: 'warning',
+              })
+            }
           })
         )
       }
@@ -498,16 +518,167 @@ export class SettingsComponent implements OnInit {
           if (result.isConfirmed) {
             this.subscriptions.push(
               this.ApiService
-              .deleteCiudad(id)  
+              .deleteCategory(id)  
               .subscribe((r : any) => {
                 console.log(r)
+                if (r.status === "success"){
+
+                  location.reload();
+                }
+                else 
+                {
+                  Swal.fire({
+                    title: 'Elemento no eliminado',
+                    icon: 'warning',
+                  })
+                }
               })
             )
-            location.reload();
           }
         }); 
       }
       
     // Catetorias
+
+
+    // Sitios Start
+
+      setSite() {
+        let siteObj = {
+          id_categoria: this.categoriaId,
+          nombre: this.nombreSite,
+          lat: this.latSite,
+          lng: this.lngSite
+        }
+        this.subscriptions.push(
+          this.ApiService
+          .sitePost(JSON.parse(JSON.stringify(siteObj)))  
+          .subscribe((r : any) => {
+            console.log(r)
+            if (r.status === "success"){
+
+              location.reload();
+            }
+            else 
+            {
+              Swal.fire({
+                title: 'Elemento no registrado',
+                icon: 'warning',
+              })
+            }
+          })
+        )
+      }
+
+      getSite(){ 
+        this.ApiService
+        .getSite() 
+        .subscribe((resp : any) =>{
+          let i;
+          //console.log("#1",resp)
+          for(i in resp){
+            this.getSites.push({
+              "id_sitio":resp[i].id_sitio,
+              "id_categoria":resp[i].id_categoria,
+              "nombre":resp[i].nombre,
+              "lat":resp[i].lat,
+              "lng":resp[i].lng,
+            })
+                //console.log("#2",this.getCategory);
+          }
+        }
+       );
+      }
+
+      getSiteId(id: any){
+        this.idSit = id
+        console.log(this.idSit)
+        this.ApiService
+        .getSiteyById(id) 
+        .subscribe((r : any) =>{
+          console.log(r)
+          this.categoriaId = r[0].id_categoria
+          this.nombreSite = r[0].nombre
+          this.latSite = r[0].lat
+          this.lngSite = r[0].lng
+        }
+       );
+      }
+
+      putSiteId(){
+        let obj = {
+          id_categoria: this.categoriaId,
+          nombre: this.nombreSite,
+          lat: this.latSite,
+          lng: this.lngSite
+        }
+        //console.log(obj)
+        this.subscriptions.push(
+          this.ApiService
+          .putSite(JSON.parse(JSON.stringify(obj)), this.idSit)  
+          .subscribe((r : any) => {
+            console.log(r)
+            if (r.status === "success"){
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Registro Actualizado',
+                showConfirmButton: false,
+                timer: 2500
+              })
+              location.reload();
+            }
+            else 
+            {
+              Swal.fire({
+                title: 'Elemento no eliminado',
+                icon: 'warning',
+              })
+            }
+          })
+        )
+      }
+
+      eliminarSiteId(id: any){
+        Swal.fire({
+          title: '¿Estas seguro que desea eliminar registro?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, Eliminar registro!',
+          cancelButtonText: 'Cancelar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.subscriptions.push(
+              this.ApiService
+              .deleteSite(id)  
+              .subscribe((r : any) => {
+                console.log(r)
+                if (r.status === "success"){
+
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Registro Eliminado',
+                    showConfirmButton: false,
+                    timer: 2500
+                  })
+                  location.reload();
+                }
+                else 
+                {
+                  Swal.fire({
+                    title: 'Elemento no eliminado',
+                    icon: 'warning',
+                  })
+                }
+              })
+            )
+          }
+        }); 
+      }
+
+    // Sitios End
 
 }

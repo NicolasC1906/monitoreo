@@ -262,13 +262,12 @@
                                                   </div>
 
                                               
-                                              <!-- Tooltip Validation card end -->
+                                                <!-- Tooltip Validation card end -->
 
                                                 </div>
 
 
                                                 <div class="page-body mat-Margin">
-                                                    <div class="card">
                                                                       <div class="card">
                                                                           <div class="card-header">
                                                                               <h5 class="card-header-text">Ciudades Registradas</h5>
@@ -322,11 +321,6 @@
                                                                               </div>
                                                                           </div>
                                                                       </div>
-                                                      
-
-                                                                      
-
-                                                    </div>
                                                   </div>  
 
                                               </mat-tab>
@@ -347,7 +341,7 @@
                                                               <span class="text-c-green f-w-600">Registro Categorias</span>
                                                               <br><br>
                                                               <form>
-                                                                <div class="form-group">
+                                                                <!-- <div class="form-group">
                                                                   <h4 class="sub-title">ID Ciudad</h4>
 
                                                                   <mat-form-field class="example-full-width" appearance="fill">
@@ -360,7 +354,25 @@
                                                                       </mat-option>
                                                                     </mat-select>
                                                                   </mat-form-field>
-                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> 
+                                                                </div> -->
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">ID Ciudad</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>ID Ciudad</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. 1, 61, 66"
+                                                                     [(ngModel)]="idCiudad"
+                                                                      name="idCiudad"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>Nombre de Categoria del sitio</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -379,7 +391,6 @@
                                                                   </mat-form-field>
                                                                   
                                                                 </div>
-                                                                
                                                                 <button type="submit" class="btn btn-primary" (click)="setCategory()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
                                                               </form>
                                                               <div>
@@ -396,7 +407,6 @@
                                                 </div>
 
                                                 <div class="page-body mat-Margin">
-                                                  <div class="card">
                                                                     <div class="card">
                                                                         <div class="card-header">
                                                                             <h5 class="card-header-text">Categorias Registradas</h5>
@@ -409,7 +419,7 @@
                                                                                           <th scope="col" class=" text-center">ID Categoria</th>
                                                                                           <th scope="col" class=" text-center">ID Ciudad</th>
                                                                                           <th scope="col" class=" text-center">Nombre</th>
-                                                                                          <th scope="col" class=" text-center">Icono</th>
+                                                                                          <!-- <th scope="col" class=" text-center">Icono</th> -->
                                                                                           <th scope="col" class=" text-center">Accion</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -418,14 +428,14 @@
                                                                                           <th scope="row" class=" text-center">{{data.id_categoria}}</th>
                                                                                           <td class=" text-center">{{data.id_ciudad}}</td>
                                                                                           <td class=" text-center">{{data.nombre}}</td>
-                                                                                          <td><img src={{data.icono}} alt="" height="50" width="50" /></td>
+                                                                                          <!-- <td><i class="{{data.icono}}"></i></td> -->
                                                                                             
                                                                                             
                                                                                             <td class="dropdown">
                                                                                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
                                                                                                 <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
-                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#ModalCategory" (click)="getCategoryId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
-                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#ModalCategory" (click)="getCategoryId(data.id_categoria)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarCategoryId(data.id_categoria)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
@@ -450,11 +460,6 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                    
-
-                                                                    
-
-                                                  </div>
                                                 </div>  
                                               </mat-tab>
 
@@ -468,38 +473,52 @@
                                                     <div class="col-lg-12">
                                                       <div class="card widget-card-1">
                                                           <div class="card-block-small">
-                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
-                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <i class="feather icon-pie-chart bg-c-blue card1-icon"></i>
+                                                              <span class="text-c-blue f-w-600">Registro Sitios</span>
                                                               <br><br>
                                                               <form>
                                                                 <div class="form-group">
-                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <h4 class="sub-title">ID Categoria</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>Ciudad</mat-label>
-                                                                    <input type="text"
-                                                                           placeholder="Elige o Escriba"
-                                                                           aria-label="Number"
-                                                                           matInput
-                                                                           [formControl]="myControl"
-                                                                           [matAutocomplete]="auto"
-                                                                           [(ngModel)]="nombre"
-                                                                           name="nombre"
-                                                                           >
-                                                                    <mat-autocomplete #auto="matAutocomplete">
-                                                                      <mat-option *ngFor="let option of options" [value]="option">
-                                                                        {{option}}
-                                                                      </mat-option>
-                                                                    </mat-autocomplete>
+                                                                    <mat-label>ID Categoria</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. 1, 61, 66"
+                                                                     [(ngModel)]="categoriaId"
+                                                                      name="categoriaId"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>ID de Categoria del sitio</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Nombre Sitio</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Nombre Sitio</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. Unicentro, Centro Mayor "
+                                                                     [(ngModel)]="nombreSite"
+                                                                      name="nombreSite"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>Nombre del sitio</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                                                  </mat-form-field>
+                                                                  
                                                                 </div>
 
                                                                 <div class="form-group">
                                                                   <h4 class="sub-title">Latitud</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
                                                                     <mat-label>Latitud</mat-label>
-                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
-                                                                    name="lat">
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="latSite"
+                                                                    name="latSite">
                                                                     <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
                                                                   </mat-form-field>
                                                                   
@@ -509,18 +528,18 @@
                                                                   <h4 class="sub-title">Longitud</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
                                                                     <mat-label>Longitud</mat-label>
-                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
-                                                                    name="lng">
+                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lngSite"
+                                                                    name="lngSite">
                                                                     <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
                                                                   </mat-form-field>
                                                                   
                                                                 </div>
                                                                 
-                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                                <button type="submit" class="btn btn-primary" (click)="setSite()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
                                                               </form>
                                                               <div>
                                                                   <span class="f-left m-t-10 text-muted">
-                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                      <i class="text-c-blue f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Sitio
                                                                   </span>
                                                               </div>
                                                           </div>
@@ -532,36 +551,37 @@
                                                 </div>
 
                                                 <div class="page-body mat-Margin">
-                                                  <div class="card">
                                                                     <div class="card">
                                                                         <div class="card-header">
-                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                            <h5 class="card-header-text">Sitios Registradas</h5>
                                                                         </div>
                                                                         <div class="card-block contact-details">
                                                                             <div class="data_table_main table-responsive dt-responsive">
                                                                                 <table id="simpletable" class="table  table-striped table-bordered nowrap">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
+                                                                                          <th scope="col" class=" text-center">ID Sitio</th>
+                                                                                          <th scope="col" class=" text-center">ID Categoria</th>
                                                                                           <th scope="col" class=" text-center">Nombre</th>
-                                                                                          <th scope="col" class=" text-center">Longitud</th>
                                                                                           <th scope="col" class=" text-center">Latitud</th>
+                                                                                          <th scope="col" class=" text-center">longitud</th>
                                                                                           <th scope="col" class=" text-center">Accion</th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
-                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
+                                                                                        <tr *ngFor = "let data of getSites | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <th scope="row" class=" text-center">{{data.id_sitio}}</th>
+                                                                                          <td class=" text-center">{{data.id_categoria}}</td>
                                                                                           <td class=" text-center">{{data.nombre}}</td>
-                                                                                          <td class=" text-center">{{data.latitud}}</td>
-                                                                                          <td class=" text-center">{{data.longitud}}</td>
+                                                                                          <td class=" text-center">{{data.lat}}</td>
+                                                                                          <td class=" text-center">{{data.lng}}</td>
                                                                                             
                                                                                             
                                                                                             <td class="dropdown">
                                                                                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
                                                                                                 <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
-                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
-                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#ModalSite" (click)="getSiteId(data.id_sitio)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
+                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarSiteId(data.id_sitio)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
@@ -586,11 +606,6 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                    
-
-                                                                    
-
-                                                  </div>
                                                 </div>  
                                               </mat-tab>
 
@@ -727,7 +742,8 @@
                                                                     
 
                                                   </div>
-                                                </div>  
+                                                </div> 
+                                                 
                                               </mat-tab>
 
                                               <mat-tab>
@@ -1180,20 +1196,23 @@
                     <span class="text-c-green f-w-600">Registro Categorias</span>
                     <br><br>
                     <form>
+                      
                       <div class="form-group">
                         <h4 class="sub-title">ID Ciudad</h4>
-
                         <mat-form-field class="example-full-width" appearance="fill">
                           <mat-label>ID Ciudad</mat-label>
-                          <mat-select>
-                            <mat-option *ngFor="let option of options" 
-                            [value]="option.id"
+                          <input
+                          matInput
+                           #message 
+                           maxlength="256" 
+                           placeholder="Ex. 1, 61, 66"
+                           [(ngModel)]="idCiudad"
+                            name="idCiudad"
                             >
-                              {{option.nombre}}
-                            </mat-option>
-                          </mat-select>
+                          <mat-hint align="start"><strong>Nombre de Categoria del sitio</strong> </mat-hint>
+                          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                         </mat-form-field>
-                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                        
                       </div>
 
                       <div class="form-group">
@@ -1213,7 +1232,7 @@
                         
                       </div>
                       
-                      <button type="submit" class="btn btn-primary" (click)="setCategory()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                      <button type="submit" class="btn btn-primary" (click)="putCategoryId()" (click)="openSnackBar('Registrado', 'Ok')">Actualizar</button>
                     </form>
                     <div>
                         <span class="f-left m-t-10 text-muted">
@@ -1226,6 +1245,99 @@
       </div>
 
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Sitios-->
+<div class="modal fade" id="ModalSite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body modal-backdrop">
+          <div class="card-block">
+            <div class="col-lg-12">
+              <div class="card widget-card-1">
+                  <div class="card-block-small">
+                      <i class="feather icon-pie-chart bg-c-blue card1-icon"></i>
+                      <span class="text-c-blue f-w-600">Editar Sitio</span>
+                      <br><br>
+                      <form>
+                        <div class="form-group">
+                          <h4 class="sub-title">ID Categoria</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>ID Categoria</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. 1, 61, 66"
+                             [(ngModel)]="categoriaId"
+                              name="categoriaId"
+                              >
+                            <mat-hint align="start"><strong>ID de Categoria del sitio</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                          
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Nombre Sitio</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Nombre Sitio</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. Unicentro, Centro Mayor "
+                             [(ngModel)]="nombreSite"
+                              name="nombreSite"
+                              >
+                            <mat-hint align="start"><strong>Nombre del sitio</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                          
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Latitud</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Latitud</mat-label>
+                            <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="latSite"
+                            name="latSite">
+                            <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                          </mat-form-field>
+                          
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Longitud</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Longitud</mat-label>
+                            <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lngSite"
+                            name="lngSite">
+                            <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                          </mat-form-field>
+                          
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" (click)="putSiteId()" (click)="openSnackBar('Registrado', 'Ok')">Modificar</button>
+                      </form>
+                      <div>
+                          <span class="f-left m-t-10 text-muted">
+                              <i class="text-c-blue f-16 feather icon-edit-1 m-r-10"></i>Formulario Editar Sitio
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
     </div>
   </div>
 </div>
