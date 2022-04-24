@@ -492,7 +492,6 @@
                                                                     <mat-hint align="start"><strong>ID de Categoria del sitio</strong> </mat-hint>
                                                                     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -510,7 +509,6 @@
                                                                     <mat-hint align="start"><strong>Nombre del sitio</strong> </mat-hint>
                                                                     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  
                                                                 </div>
 
                                                                 <div class="form-group">
@@ -619,59 +617,84 @@
                                                     <div class="col-lg-12">
                                                       <div class="card widget-card-1">
                                                           <div class="card-block-small">
-                                                              <i class="fa fa-shopping-bag bg-c-green card1-icon"></i>
-                                                              <span class="text-c-green f-w-600">Registro Ciudad</span>
+                                                              <i class="fa fa-odnoklassniki bg-c-yellow card1-icon"></i>
+                                                              <span class="text-c-yellow f-w-600">Registro Baño</span>
                                                               <br><br>
                                                               <form>
+
                                                                 <div class="form-group">
-                                                                  <h4 class="sub-title">Nombre</h4>
+                                                                  <h4 class="sub-title">ID Sitio</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>Ciudad</mat-label>
-                                                                    <input type="text"
-                                                                           placeholder="Elige o Escriba"
-                                                                           aria-label="Number"
-                                                                           matInput
-                                                                           [formControl]="myControl"
-                                                                           [matAutocomplete]="auto"
-                                                                           [(ngModel)]="nombre"
-                                                                           name="nombre"
-                                                                           >
-                                                                    <mat-autocomplete #auto="matAutocomplete">
-                                                                      <mat-option *ngFor="let option of options" [value]="option">
-                                                                        {{option}}
-                                                                      </mat-option>
-                                                                    </mat-autocomplete>
+                                                                    <mat-label>ID Sitio</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. 1, 61, 66"
+                                                                     [(ngModel)]="sitioId"
+                                                                      name="sitioId"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>ID de sitio</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                  <h4 class="sub-title">Latitud</h4>
+                                                                  <h4 class="sub-title">Nombre Baño</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>Latitud</mat-label>
-                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105"  [(ngModel)]="lat"
-                                                                    name="lat">
-                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                    <mat-label>Nombre Baño</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. Adidas,Crepes"
+                                                                     [(ngModel)]="nombreBano"
+                                                                      name="nombreBano"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>Nombre del Baño</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  
                                                                 </div>
 
                                                                 <div class="form-group">
-                                                                  <h4 class="sub-title">Longitud</h4>
+                                                                  <h4 class="sub-title">Ubicación Baño</h4>
                                                                   <mat-form-field class="example-full-width" appearance="fill">
-                                                                    <mat-label>Longitud</mat-label>
-                                                                    <input matInput #postalCode maxlength="10" placeholder="Ex. 94105" [(ngModel)]="lng"
-                                                                    name="lng">
-                                                                    <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                                                                    <mat-label>Ubicación Baño</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. Primer Piso"
+                                                                     [(ngModel)]="ubicacionBano"
+                                                                      name="ubicacionBano"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>Ubicación Baño</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
                                                                   </mat-form-field>
-                                                                  
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                  <h4 class="sub-title">Fotografia</h4>
+                                                                  <mat-form-field class="example-full-width" appearance="fill">
+                                                                    <mat-label>Recursos del Baño</mat-label>
+                                                                    <input
+                                                                    matInput
+                                                                     #message 
+                                                                     maxlength="256" 
+                                                                     placeholder="Ex. Url Imagen"
+                                                                     [(ngModel)]="recursosBano"
+                                                                      name="recursosBano"
+                                                                      >
+                                                                    <mat-hint align="start"><strong>Url imagen del Baño</strong> </mat-hint>
+                                                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                                                  </mat-form-field>
                                                                 </div>
                                                                 
-                                                                <button type="submit" class="btn btn-primary" (click)="SetCity()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
+                                                                <button type="submit" class="btn btn-primary" (click)="setBano()" (click)="openSnackBar('Registrado', 'Ok')">Registrar</button>
                                                               </form>
                                                               <div>
                                                                   <span class="f-left m-t-10 text-muted">
-                                                                      <i class="text-c-pink f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Ciudad
+                                                                      <i class="text-c-yellow f-16 feather icon-edit-1 m-r-10"></i>Formulario Registrar Baño
                                                                   </span>
                                                               </div>
                                                           </div>
@@ -683,65 +706,67 @@
                                                 </div>
 
                                                 <div class="page-body mat-Margin">
-                                                  <div class="card">
                                                                     <div class="card">
                                                                         <div class="card-header">
-                                                                            <h5 class="card-header-text">Ciudades Registradas</h5>
+                                                                            <h5 class="card-header-text">Baños Registrados</h5>
                                                                         </div>
-                                                                        <div class="card-block contact-details">
-                                                                            <div class="data_table_main table-responsive dt-responsive">
-                                                                                <table id="simpletable" class="table  table-striped table-bordered nowrap">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                          <th scope="col" class=" text-center">ID Ciudad</th>
-                                                                                          <th scope="col" class=" text-center">Nombre</th>
-                                                                                          <th scope="col" class=" text-center">Longitud</th>
-                                                                                          <th scope="col" class=" text-center">Latitud</th>
-                                                                                          <th scope="col" class=" text-center">Accion</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        <tr *ngFor = "let data of getCiudades | paginate: { itemsPerPage: 10, currentPage: cp  }">
-                                                                                          <th scope="row" class=" text-center">{{data.id}}</th>
-                                                                                          <td class=" text-center">{{data.nombre}}</td>
-                                                                                          <td class=" text-center">{{data.latitud}}</td>
-                                                                                          <td class=" text-center">{{data.longitud}}</td>
-                                                                                            
-                                                                                            
-                                                                                            <td class="dropdown">
-                                                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog" aria-hidden="true"></i></button>
-                                                                                                <div class="dropdown-menu dropdown-menu-right b-none contact-menu">
-                                                                                                    <a class="dropdown-item cursor-pointer"  data-toggle="modal" data-target="#exampleModal" (click)="getCityId(data.id)" ><i class="icofont icofont-edit text-c-lite-green"></i>Editar</a>
-                                                                                                    <a class="dropdown-item cursor-pointer" (click)="eliminarId(data.id)"><i class="icofont icofont-ui-delete text-c-pink"></i>Eliminar</a>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <!-- Paginación -->
-                                                                  <br><br>
-                                                                  <div class="pro-result pagination-style">
-                                                                      <div class="clearfix">
-                                                                      <pagination-controls  
-                                                                      class="my-pagination pagination-style" 
-                                                                      (pageChange)="onPageChange 
-                                                                      ($event)" 
-                                                                      
-                                                                      previousLabel = " Anterior "
-                                                                      nextLabel = " Siguiente " 
-                                                                      >
-                                                                      </pagination-controls>
+
+                                                                        <div class="page-wrapper">
+                                                                          <!-- Page-header start -->
+                                                                          <!-- Page-header end -->
+                                                                              <!-- Page body start -->
+                                                                              <div class="page-body">
+                                                                                  <!-- Product list start -->
+                                                                                  <div class="row">
+                                                                                      <div class="col-xl-4 col-md-6 col-sm-6 col-xs-12" *ngFor = "let data of getBanos | paginate: { itemsPerPage: 10, currentPage: cp  }">
+                                                                                          <div class="card prod-view">
+                                                                                              <div class="prod-item text-center">
+                                                                                                  <div class="prod-img">
+                                                                                                      <div class="option-hover">
+                                                                                                        <button type="button" class="btn text-c-lite-green btn-icon waves-effect waves-light m-r-15 hvr-bounce-in option-icon">
+                                                                                                          <i class="icofont icofont-edit f-20" data-toggle="modal" data-target="#ModalBano" (click)="getBanoId(data.id_bano)"></i>
+                                                                                                        </button>
+                                                                                                          <button type="button" class="btn btn-danger btn-icon waves-effect waves-light hvr-bounce-in option-icon">
+                                                                                                            <i class="icofont icofont-ui-delete f-20" (click)="eliminarBanoId(data.id_bano)"></i>
+                                                                                                        </button>
+                                                                                                      </div>
+                                                                                                      <a class="hvr-shrink">
+                                                                                                          <img src="{{data.recursos}}" class="img-fluid o-hidden" alt="prod1.jpg">
+                                                                                                      </a>
+                                                                                                      <div class="p-new"><a href="">{{data.id_sitio}}</a></div>
+                                                                                                  </div>
+                                                                                                  <div class="prod-info">
+                                                                                                    <h3>{{data.nombre}}</h3>
+                                                                                                    <span>{{data.ubicacion}}</span> 
+                                                                                                      <div class="m-b-10">
+                                                                                                          <label class="label label-info">ID sitio: <i class="fa fa-map-pin"> {{data.id_sitio}}</i></label>
+                                                                                                          <label class="label label-success">ID Baño: <i class="fa fa-universal-access"> {{data.id_bano}}</i></label>
+                                                                                                      </div>
+                                                                                                  </div>
+                                                                                              </div>
+                                                                                          </div>
+                                                                                      </div>
+                                                                                  </div>
+                                                                                  <!-- Product list end -->
+                                                                              </div>
+                                                                              <!-- Page body end -->
+                                                                          </div>
+                                                                          <!-- Paginación -->
+                                                                      <div class="pro-result pagination-style">
+                                                                          <div class="clearfix">
+                                                                          <pagination-controls  
+                                                                          class="my-pagination pagination-style" 
+                                                                          (pageChange)="onPageChange 
+                                                                          ($event)" 
+                                                                          
+                                                                          previousLabel = " Anterior "
+                                                                          nextLabel = " Siguiente " 
+                                                                          >
+                                                                          </pagination-controls>
+                                                                          </div>
                                                                       </div>
-                                                                  </div>
-                                                                  <!-- Paginación -->
-                                                                            </div>
-                                                                        </div>
+                                                                      <!-- Paginación -->
                                                                     </div>
-                                                    
-
-                                                                    
-
-                                                  </div>
                                                 </div> 
                                                  
                                               </mat-tab>
@@ -1176,6 +1201,8 @@
   </div>
 </div>
 
+
+
 <!-- Modal Categorias-->
 <div class="modal fade" id="ModalCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1331,6 +1358,110 @@
                       <div>
                           <span class="f-left m-t-10 text-muted">
                               <i class="text-c-blue f-16 feather icon-edit-1 m-r-10"></i>Formulario Editar Sitio
+                          </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Banos-->
+<div class="modal fade" id="ModalBano" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="exampleModalLabel"></h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body modal-backdrop">
+          <div class="card-block">
+            <div class="col-lg-12">
+              <div class="card widget-card-1">
+                  <div class="card-block-small">
+                      <i class="fa fa-odnoklassniki bg-c-yellow card1-icon"></i>
+                      <span class="text-c-yellow f-w-600">Editar Baño</span>
+                      <br><br>
+                      <form>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">ID Sitio</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>ID Sitio</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. 1, 61, 66"
+                             [(ngModel)]="sitioId"
+                              name="sitioId"
+                              >
+                            <mat-hint align="start"><strong>ID de sitio</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Nombre Baño</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Nombre Baño</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. Adidas,Crepes"
+                             [(ngModel)]="nombreBano"
+                              name="nombreBano"
+                              >
+                            <mat-hint align="start"><strong>Nombre del Baño</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Ubicación Baño</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Ubicación Baño</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. Primer Piso"
+                             [(ngModel)]="ubicacionBano"
+                              name="ubicacionBano"
+                              >
+                            <mat-hint align="start"><strong>Ubicación Baño</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                          <h4 class="sub-title">Fotografia</h4>
+                          <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label>Recursos del Baño</mat-label>
+                            <input
+                            matInput
+                             #message 
+                             maxlength="256" 
+                             placeholder="Ex. Url Imagen"
+                             [(ngModel)]="recursosBano"
+                              name="recursosBano"
+                              >
+                            <mat-hint align="start"><strong>Url imagen del Baño</strong> </mat-hint>
+                            <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                          </mat-form-field>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" (click)="putBanoId()" (click)="openSnackBar('Registrado', 'Ok')">Modificar</button>
+                      </form>
+                      <div>
+                          <span class="f-left m-t-10 text-muted">
+                              <i class="text-c-yellow f-16 feather icon-edit-1 m-r-10"></i>Formulario Editar Baño
                           </span>
                       </div>
                   </div>

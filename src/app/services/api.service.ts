@@ -144,6 +144,35 @@ export class ApiService {
 
   // API STIOS END
 
+  // API BANOS START
+  BANOSPost(bano: any): Observable<any> {
+    console.log(bano)
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/bano", bano, { headers } );
+  }
+
+  getBanos(){
+
+    return this.http.get(`${this.url}bano`);
+  }
+
+  getBanoById(id: any){
+
+    return this.http.get(`${this.url}bano/${id}`);
+  }
+
+  putBano(bano: any, id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.put("https://api-mirror-marketing.herokuapp.com/bano/" + id, bano, { headers } );
+  }
+
+  deleteBano( id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.delete("https://api-mirror-marketing.herokuapp.com/bano/" + id, { headers } );
+  }
+  // API BANO END
+
+  
   getUser(city: any): Observable<any> {
 
     let header = new HttpHeaders()

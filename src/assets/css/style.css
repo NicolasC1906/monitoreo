@@ -1642,6 +1642,11 @@ a.bg-danger:hover {
     background-color: #fe9365
 }
 
+.center-Items {
+    align-items: center;
+    text-align: center;
+   }    
+
 .table-responsive {
     display: inline-block;
     width: 100%;
@@ -2976,7 +2981,7 @@ table.matrics-table tr:first-child td {
 }
 
 .prod-item .prod-img .option-hover {
-    display: none;
+    /* display: none; */
     position: absolute;
     right: 0;
     top: 50%;

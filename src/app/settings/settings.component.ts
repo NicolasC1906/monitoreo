@@ -42,9 +42,11 @@ export class SettingsComponent implements OnInit {
   step = 0;
 
   cp: number = 1;
+
   getCiudades: any = [];
   getCategorias: any = [];
   getSites: any = [];
+  getBanos: any = [];
 
   firstFormGroup: FormGroup | any;
   secondFormGroup: FormGroup | any;
@@ -57,6 +59,7 @@ export class SettingsComponent implements OnInit {
   idcity: any;
   idCat: any;
   idSit: any;
+  idBan: any;
   categoryCityId: any;
   getCiudadesId: any = [];
   idCiudad: any;
@@ -69,6 +72,10 @@ export class SettingsComponent implements OnInit {
   nombreSite: any;
   latSite: any;
   lngSite: any;
+  sitioId: any;
+  nombreBano: any;
+  ubicacionBano: any;
+  recursosBano: any;
 
   
 
@@ -173,6 +180,7 @@ export class SettingsComponent implements OnInit {
     this.getCity();
     this.getCategory();
     this.getSite();
+    this.getBano();
 
     if(localStorage.getItem('token')){
       this.iniciar = false;
@@ -680,5 +688,149 @@ export class SettingsComponent implements OnInit {
       }
 
     // Sitios End
+
+    // Banos Start
+
+    setBano() {
+      let siteObj = {
+        id_sitio: this.sitioId,
+        nombre: this.nombreBano,
+        ubicacion: this.ubicacionBano,
+        recursos: this.recursosBano
+      }
+      this.subscriptions.push(
+        this.ApiService
+        .BANOSPost(JSON.parse(JSON.stringify(siteObj)))  
+        .subscribe((r : any) => {
+          console.log(r)
+          if (r.status === "success"){
+            Swal.fire({
+              title: 'Elemento registrado',
+              icon: 'success',
+              showConfirmButton: false,
+            })
+            location.reload();
+          }
+          else 
+          {
+            Swal.fire({
+              title: 'Elemento no registrado',
+              icon: 'warning',
+            })
+          }
+        })
+      )
+    }
+
+    getBano(){ 
+      this.ApiService
+      .getBanos() 
+      .subscribe((resp : any) =>{
+        let i;
+        //console.log("#1",resp)
+        for(i in resp){
+          this.getBanos.push({
+            "id_sitio":resp[i].id_sitio,
+            "id_bano":resp[i].id_bano,
+            "nombre":resp[i].nombre,
+            "ubicacion":resp[i].ubicacion,
+            "recursos":resp[i].recursos,
+          })
+              //console.log("#2",this.getCategory);
+        }
+      }
+     );
+    }
+
+    getBanoId(id: any){
+      this.idBan = id
+      console.log(this.idBan)
+      this.ApiService
+      .getBanoById(id) 
+      .subscribe((r : any) =>{
+        console.log(r)
+        this.sitioId = r[0].id_sitio
+        this.nombreBano = r[0].nombre
+        this.ubicacionBano = r[0].ubicacion
+        this.recursosBano = r[0].recursos
+      }
+     );
+    }
+
+    putBanoId(){
+      let obj = {
+        id_sitio: this.sitioId,
+        nombre: this.nombreBano,
+        ubicacion: this.ubicacionBano,
+        recursos: this.recursosBano
+      }
+      //console.log(obj)
+      this.subscriptions.push(
+        this.ApiService
+        .putBano(JSON.parse(JSON.stringify(obj)), this.idBan)  
+        .subscribe((r : any) => {
+          console.log(r)
+          if (r.status === "success"){
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Registro Actualizado',
+              showConfirmButton: false,
+              timer: 2500
+            })
+            location.reload();
+          }
+          else 
+          {
+            Swal.fire({
+              title: 'Registro no Actualizado',
+              icon: 'warning',
+            })
+          }
+        })
+      )
+    }
+
+    eliminarBanoId(id: any){
+      Swal.fire({
+        title: '¿Estas seguro que desea eliminar registro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Eliminar registro!',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.subscriptions.push(
+            this.ApiService
+            .deleteBano(id)  
+            .subscribe((r : any) => {
+              console.log(r)
+              if (r.status === "success"){
+
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Registro Eliminado',
+                  showConfirmButton: false,
+                  timer: 2500
+                })
+                location.reload();
+              }
+              else 
+              {
+                Swal.fire({
+                  title: 'Registro no eliminado',
+                  icon: 'warning',
+                })
+              }
+            })
+          )
+        }
+      }); 
+    }
+
+  // Banos End    
 
 }
