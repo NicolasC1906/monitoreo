@@ -144,6 +144,34 @@ export class ApiService {
 
   // API STIOS END
 
+  // API GENERO START
+  genderPost(gender: any): Observable<any> {
+    console.log(gender)
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.post("https://api-mirror-marketing.herokuapp.com/genero", gender, { headers } );
+  }
+
+  getGender(){
+
+    return this.http.get(`${this.url}genero`);
+  }
+
+  getGenderById(id: any){
+
+    return this.http.get(`${this.url}genero/${id}`);
+  }
+
+  putGenero(gender: any, id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.put("https://api-mirror-marketing.herokuapp.com/genero/" + id, gender, { headers } );
+  }
+
+  deleteGender( id:any): Observable<any> {
+    const headers = {'Type-content':'aplication/json', 'responseType' : "text"}
+    return this.http.delete("https://api-mirror-marketing.herokuapp.com/bano/" + id, { headers } );
+  }
+  // API GENERO END
+
   // API BANOS START
   BANOSPost(bano: any): Observable<any> {
     console.log(bano)
